@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/18 09:38:59 by awafflar          #+#    #+#             */
-/*   Updated: 2019/09/18 15:58:35 by awafflar         ###   ########.fr       */
+/*   Created: 2019/09/18 14:20:27 by awafflar          #+#    #+#             */
+/*   Updated: 2019/09/18 14:22:41 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdarg.h>
-#include <stdlib.h>
-
-#include "ft_printf.h"
-
-int				ft_printf(const char *format, ...)
+int				ft_strlen(const char *s)
 {
-	t_buffer	*buff;
+	const char	*s1;
 
-	if (!(buff = malloc(sizeof(t_buffer))))
-		exit(EXIT_FAILURE);
-	b_init(buff);
-	b_addchar(buff, '?', 12);
-	b_addstr(buff, format);
-	b_flush(buff);
-	return (0);
+	s1 = s;
+	while (*s1++);
+	return (s1 - s);
 }

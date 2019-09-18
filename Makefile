@@ -6,7 +6,7 @@
 #    By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/18 09:38:44 by awafflar          #+#    #+#              #
-#    Updated: 2019/09/18 14:07:22 by awafflar         ###   ########.fr        #
+#    Updated: 2019/09/18 14:23:51 by awafflar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ CC = gcc $(FLAGS)
 INC = -Iinclude
 
 SRC =	ft_printf.c \
+		utils.c		\
+		buffer.c
 
 OBJ = $(SRC:%.c=obj/%.o)
 

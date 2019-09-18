@@ -6,16 +6,19 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 09:52:12 by awafflar          #+#    #+#             */
-/*   Updated: 2019/09/18 13:51:07 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/09/18 15:03:07 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+# define BUFF_SIZE 10
+
 typedef struct		s_buffer
 {
-	char			buff[256];
+	char			str[BUFF_SIZE];
+	int				pos;
 	int				remaining;
 	int				fd;
 }					t_buffer;
@@ -38,8 +41,12 @@ typedef struct		s_mods
 
 int					ft_printf(const char *format, ...);
 
-int					b_addchar(t_buffer buff, char c, int n);
-int					b_addstr(t_buffer buff, char *s);
-int					b_flush(t_buffer buff);
+int					ft_strlen(const char *s);
+
+void				b_init(t_buffer *buff);
+void				b_addchar(t_buffer *buff, const char c, int n);
+void				b_addstr(t_buffer *buff, const char *s);
+void				b_addnstr(t_buffer *buff, const char *s, int n);
+void				b_flush(t_buffer *buff);
 
 #endif
