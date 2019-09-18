@@ -6,7 +6,7 @@
 #    By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/18 09:38:44 by awafflar          #+#    #+#              #
-#    Updated: 2019/09/18 09:38:54 by awafflar         ###   ########.fr        #
+#    Updated: 2019/09/18 14:07:22 by awafflar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ FLAGS = -Wall -Wextra -Werror
 
 CC = gcc $(FLAGS)
 
-SRC =	ft_printf.c
+INC = -Iinclude
+
+SRC =	ft_printf.c \
 
 OBJ = $(SRC:%.c=obj/%.o)
 
@@ -28,15 +30,16 @@ $(NAME): $(OBJ)
 	ar rc $@ $^
 	ranlib $@
 
-obj/%.o: %.c
+obj/%.o: src/%.c
 	@mkdir -p obj/
-	$(CC) -c -o $@ $<
+	$(CC) $(INC) -c -o $@ $<
 
 clean:
 	$(RM) $(OBJ)
 
 fclean: clean
 	$(RM) $(NAME)
+	rm -rf obj/
 
 re: fclean all
 
