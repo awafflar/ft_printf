@@ -18,3 +18,13 @@ int				ft_strlen(const char *s)
 	while (*s1++);
 	return (s1 - s);
 }
+
+int				ft_atoi_lite(const char **str)
+{
+	int		ret;
+
+	ret = 0;
+	while (**str >= '0' && **str <= '9')
+		ret = ret * 10 + *((*str)++) - '0';
+	return (ret);
+}

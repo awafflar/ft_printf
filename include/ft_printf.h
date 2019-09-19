@@ -15,10 +15,10 @@
 
 # define BUFF_SIZE	10
 # define F_PLUS		1
-# define F_MINUS		2
-# define F_SPACE		4
+# define F_MINUS	2
+# define F_SPACE	4
 # define F_ZERO		8
-# define F_SHARP		16
+# define F_SHARP	16
 
 typedef struct		s_buffer
 {
@@ -34,6 +34,7 @@ typedef struct		s_format
 	char			flags;
 	int				width;
 	int				precision;
+	int				arg_n;
 }					t_format;
 
 int					ft_printf(const char *format, ...);
