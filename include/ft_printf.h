@@ -13,7 +13,12 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# define BUFF_SIZE 10
+# define BUFF_SIZE	10
+# define F_PLUS		1
+# define F_MINUS		2
+# define F_SPACE		4
+# define F_ZERO		8
+# define F_SHARP		16
 
 typedef struct		s_buffer
 {
@@ -21,32 +26,28 @@ typedef struct		s_buffer
 	int				pos;
 	int				remaining;
 	int				fd;
+	int				total;
 }					t_buffer;
 
-typedef struct		s_mods
+typedef struct		s_format
 {
-	int				conversion;
-	int				zero;
-	int				adjust;
-	int				blank;
-	int				sign;
+	char			flags;
 	int				width;
 	int				precision;
-	int				hh;
-	int				h;
-	int				l;
-	int				ll;
-	int				L;
-}					t_mods;
+}					t_format;
 
 int					ft_printf(const char *format, ...);
+int					ft_printf_fd(int fd, const char *format, ...);
+void				parse_mods(t_format *fmt, const char *format);
 
 int					ft_strlen(const char *s);
 
-void				b_init(t_buffer *buff);
-void				b_addchar(t_buffer *buff, const char c, int n);
-void				b_addstr(t_buffer *buff, const char *s);
-void				b_addnstr(t_buffer *buff, const char *s, int n);
-void				b_flush(t_buffer *buff);
+void				buff_init(t_buffer *buff);
+void				buff_addchar(t_buffer *buff, const char c, int n);
+void				buff_addnchar(t_buffer *buff, const char c);
+void				buff_addstr(t_buffer *buff, const char *s);
+void				buff_flush(t_buffer *buff);
+
+t_buffer			*get_buff();
 
 #endif

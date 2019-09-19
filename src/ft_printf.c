@@ -15,16 +15,38 @@
 #include <stdlib.h>
 
 #include "ft_printf.h"
+#include "ft_printf_core.h"
 
-int				ft_printf(const char *format, ...)
+int				ft_printf_fd(int fd, const char *format, ...)
 {
-	t_buffer	*buff;
+	
+}
 
-	if (!(buff = malloc(sizeof(t_buffer))))
-		exit(EXIT_FAILURE);
-	b_init(buff);
-	b_addchar(buff, '?', 12);
-	b_addstr(buff, format);
-	b_flush(buff);
-	return (0);
+int				ft_printf_core(int fd, const char *format, va_list ap)
+{
+	while (*format)
+	{
+		if (*format != '%')
+			buff_addchar(get_buff(), *format);
+		else
+		{
+			format++;
+			parse_format(t_format *fmt, const char *format);
+		}
+		format++;
+	}
+	buff_flush(get_buff());
+	return (get_buff()->total);
+}
+
+int				parse_format(t_format *fmt, const char *format)
+{
+	if (*format == '+')
+	{
+		fmt->flags |= PLUS;
+	}
+	elseif(*format == '-')
+	{
+		
+	}
 }

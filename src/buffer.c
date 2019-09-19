@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 13:34:33 by awafflar          #+#    #+#             */
-/*   Updated: 2019/09/18 16:09:25 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/09/19 15:07:08 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,55 +14,38 @@
 
 #include "ft_printf.h"
 
-void			b_init(t_buffer *buff)
+void			buff_init(t_buffer *buff)
 {
 	buff->pos = 0;
 	buff->remaining = BUFF_SIZE;
 	buff->fd = 1;
+	buff->total = 0;
 }
 
-void			b_addchar(t_buffer *buff, const char c, int n)
+void			buff_addchar(t_buffer *buff, char c)
 {
+	if(!buff->remaining)
+		b_flush(buff);
+	buff->str[buff->pos++] = c;
+	buff->remaining--;
 }
 
-void			b_addstr(t_buffer *buff, const char *s)
+void			buff_addnchar(t_buffer *buff, char c, int n)
 {
-	int		len;
-
-	len = ft_strlen(s);
-	while (*s)
-	{
-		if (len > buff->remaining)
-		{
-			b_addnstr(buff, s, buff->remaining);
-			s += buff->remaining;
-			len -= buff->remaining;
-			b_flush(buff);
-		}
-		else
-		{
-			b_addnstr(buff, s, len);
-			buff->pos += len;
-			buff->remaining -= len;
-			s += len;
-		}
-	}
+	while (n--)
+		b_addchar(buff, c);
 }
 
-void			b_addnstr(t_buffer *buff, const char *s, int n)
+void			buff_addstr(t_buffer *buff, char *str)
 {
-	int		i;
-
-	i  = buff->pos;
-	while (n-- >= 0)
-		buff->str[i++] = *s++;
-	buff->remaining -= n;
-	buff->pos += n;
+	while (*str)
+		buff_addchar(buff, *str++);
 }
 
-void			b_flush(t_buffer *buff)
+void			buff_flush(t_buffer *buff)
 {
-	write(buff->fd, buff->str, ft_strlen(buff->str));
+	write(buff->fd, buff->str, buff->pos);
+	buff->total += buff->pos;
 	buff->pos = 0;
 	buff->remaining = BUFF_SIZE;
 }
