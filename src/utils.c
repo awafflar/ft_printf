@@ -15,8 +15,14 @@ int				ft_strlen(const char *s)
 	const char	*s1;
 
 	s1 = s;
-	while (*s1++);
+	while (*s1)
+		s1++;
 	return (s1 - s);
+}
+
+int				ft_isdigit(char c)
+{
+	return (c >= '0' && c <= '9');
 }
 
 int				ft_atoi_lite(const char **str)
@@ -24,7 +30,7 @@ int				ft_atoi_lite(const char **str)
 	int		ret;
 
 	ret = 0;
-	while (**str >= '0' && **str <= '9')
+	while (ft_isdigit(**str))
 		ret = ret * 10 + *((*str)++) - '0';
 	return (ret);
 }

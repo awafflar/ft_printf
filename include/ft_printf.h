@@ -29,13 +29,13 @@ typedef struct		s_buffer
 	int				total;
 }					t_buffer;
 
-typedef struct		s_format
+typedef struct		s_fmt
 {
 	char			flags;
 	int				width;
 	int				precision;
 	int				arg_n;
-}					t_format;
+}					t_fmt;
 
 int					ft_printf(const char *format, ...);
 int					ft_printf_fd(int fd, const char *format, ...);
