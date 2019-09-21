@@ -17,36 +17,46 @@
 #include "ft_printf.h"
 #include "ft_printf_core.h"
 
-int				ft_printf_fd(int fd, const char *format, ...)
+int				ft_printf(const char *format, ...)
 {
-	
+	va_list		ap;
+	int			ret;
+
+	va_start(ap, format);
+	ret = ft_vprintf(format, ap);
+	va_end(ap);
+	return (ret);
 }
 
-int				ft_printf_core(int fd, const char *format, va_list ap)
+int				ft_fdprintf(int fd, const char *format, ...)
 {
-	while (*format)
-	{
-		if (*format != '%')
-			buff_addchar(get_buff(), *format);
-		else
-		{
-			format++;
-			parse_format(t_format *fmt, const char *format);
-		}
-		format++;
-	}
-	buff_flush(get_buff());
-	return (get_buff()->total);
+	va_list		ap;
+	int			ret;
+
+	va_start(ap, format);
+	ret = ft_vfdprintf(fd, format, ap);
+	va_end(ap);
+	return (ret);
 }
 
-int				parse_format(t_format *fmt, const char *format)
+int				ft_sprintf(char *str, const char *format, ...)
 {
-	if (*format == '+')
-	{
-		fmt->flags |= PLUS;
-	}
-	elseif(*format == '-')
-	{
-		
-	}
+	va_list		ap;
+	int			ret;
+
+	va_start(ap, format);
+	ret = ft_vsprintf(str, format, ap);
+	va_end(ap);
+	return (ret);
+}
+
+int				ft_snprintf(char *str, size_t size, const char *format, ...)
+{
+	va_list		ap;
+	int			ret;
+
+	va_start(ap, format);
+	ret = ft_vsnprintf(str, size, format, ap);
+	va_end(ap);
+	return (ret);
 }

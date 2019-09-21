@@ -3,8 +3,70 @@
 
 #include <stdarg.h>
 
-int		ft_printf_core(int fd, const char *format, va_list ap);
+#include "ft_printf.h"
 
-void	parse_core(t_fmt *fmt, const char **format, va_list ap, va_list apb);
+# define BUFF_SIZE	10
+# define F_PLUS		1
+# define F_MINUS	2
+# define F_SPACE	4
+# define F_ZERO		8
+# define F_SHARP	16
+
+typedef enum		e_bufftype
+{
+	STR,
+	NSTR,
+	FD
+}					t_bufftype;
+
+typedef enum		e_lenght
+{
+	H,
+	HH,
+	L,
+	LL,
+	BIGL
+}					t_lenght;
+
+typedef struct		s_buffer
+{
+	t_bufftype		type;
+	int				fd;
+	char			*str;
+	size_t			size;
+	int				pos;
+	int				total;
+}					t_buffer;
+
+typedef struct		s_fmt
+{
+	char			flags;
+	int				width;
+	int				precision;
+	int				arg_n;
+	char			padd;
+	t_lenght		lenght;
+}					t_fmt;
+
+typedef struct		s_args
+{
+	va_list			ap;
+	int				current;
+}					t_args;
+
+void				parse_core(t_fmt *fmt, const char **format, t_args *args);
+
+size_t				ft_strlen(const char *s);
+
+void				buff_init(t_buffer *buff, t_bufftype type, int fd,
+						char *str, size_t size);
+void				buff_addchar(t_buffer *buff, const char c);
+void				buff_addnchar(t_buffer *buff, const char c, size_t n);
+void				buff_addstr(t_buffer *buff, const char *s);
+void				buff_addnstr(t_buffer *buff, const char *s, size_t n);
+void				buff_flush(t_buffer *buff);
+
+void				ft_printf__(t_buffer *buff, const char *format,
+						va_list ap);
 
 #endif

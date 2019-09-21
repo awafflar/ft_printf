@@ -14,38 +14,54 @@
 
 #include "ft_printf.h"
 
-void			buff_init(t_buffer *buff)
+void		buff_init(t_buffer *buff, t_bufftype type, int fd,
+				char *str, size_t size)
 {
+	buff->type = type;
+	buff->fd = fd;
+	buff->str = str;
+	buff->size = (buff->type == NSTR ? size - 1 : size);
 	buff->pos = 0;
-	buff->remaining = BUFF_SIZE;
-	buff->fd = 1;
 	buff->total = 0;
 }
 
-void			buff_addchar(t_buffer *buff, char c)
+void		buff_addchar(t_buffer *buff, const char c)
 {
-	if(!buff->remaining)
-		b_flush(buff);
+	buff->total++;
+	if (buff->pos == buff->size && buff->type != STR)
+	{
+		if (buff->type == NSTR)
+			return ;
+		buff_flush(buff);
+	}
 	buff->str[buff->pos++] = c;
-	buff->remaining--;
 }
 
-void			buff_addnchar(t_buffer *buff, char c, int n)
+void		buff_addnchar(t_buffer *buff, const char c, size_t n)
 {
 	while (n--)
-		b_addchar(buff, c);
+		buff_addchar(buff, c);
 }
 
-void			buff_addstr(t_buffer *buff, char *str)
+void		buff_addstr(t_buffer *buff, const char *s)
 {
-	while (*str)
-		buff_addchar(buff, *str++);
+	while (*s)
+		buff_addchar(buff, *s++);
 }
 
-void			buff_flush(t_buffer *buff)
+void		buff_addnstr(t_buffer *buff, const char *s, size_t n)
 {
-	write(buff->fd, buff->str, buff->pos);
-	buff->total += buff->pos;
-	buff->pos = 0;
-	buff->remaining = BUFF_SIZE;
+	while (n-- && *s)
+		buff_addchar(buff, *s++);
+}
+
+void		buff_flush(t_buffer *buff)
+{
+	if (buff->type == FD)
+	{
+		write(buff->fd, buff->str, buff->pos);
+		buff->pos = 0;
+	}
+	else
+		buff->str[buff->pos] = '\0';
 }

@@ -13,42 +13,16 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# define BUFF_SIZE	10
-# define F_PLUS		1
-# define F_MINUS	2
-# define F_SPACE	4
-# define F_ZERO		8
-# define F_SHARP	16
+# include <sys/type.h>
+# include <stdarg.h>
 
-typedef struct		s_buffer
-{
-	char			str[BUFF_SIZE];
-	int				pos;
-	int				remaining;
-	int				fd;
-	int				total;
-}					t_buffer;
+int			ft_printf(const char *format, ...);
+int			ft_fdprintf(int fd, const char *format, ...);
+int			ft_sprintf(char *str, const char *format, ...);
+int			ft_snprintf(char *str, size_t size, const char *format, ...);
 
-typedef struct		s_fmt
-{
-	char			flags;
-	int				width;
-	int				precision;
-	int				arg_n;
-}					t_fmt;
-
-int					ft_printf(const char *format, ...);
-int					ft_printf_fd(int fd, const char *format, ...);
-void				parse_mods(t_format *fmt, const char *format);
-
-int					ft_strlen(const char *s);
-
-void				buff_init(t_buffer *buff);
-void				buff_addchar(t_buffer *buff, const char c, int n);
-void				buff_addnchar(t_buffer *buff, const char c);
-void				buff_addstr(t_buffer *buff, const char *s);
-void				buff_flush(t_buffer *buff);
-
-t_buffer			*get_buff();
-
-#endif
+int			ft_vprintf(const char *format, va_list ap);
+int			ft_vfdprintf(int fd, const char *format, va_list ap);
+int			ft_vsprintf(char *str, const char *format, va_list ap);
+int			ft_vsnprintf(char *str, size_t size, const char *format,
+				va_list ap);
