@@ -37,7 +37,7 @@ int			ft_atoi_lite(const char **str)
 	return (ret);
 }
 
-char		*ft_lltostr(long long n, char *str)
+char		*ft_lltostr(long long n)
 {
 	static char		buff[21];
 	char			*ret;
@@ -64,7 +64,7 @@ char		*ft_lltostr(long long n, char *str)
 	return (ret);
 }
 
-char		*ft_ulltostr_base(long long n, char *str, int base, char *digits)
+char		*ft_ulltostr_base(long long n, int base, char *digits)
 {
 	static char		buff[65];
 	char			*ret;

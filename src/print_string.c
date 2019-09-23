@@ -18,7 +18,6 @@ void		print_str(t_buffer *buff, t_fmt *fmt, t_args *args)
 	size_t	size;
 	size_t	padding;
 
-	(void)fmt;
 	str = get_arg_str(args->ap, args->current++);
 	size = ft_strlen(str);
 	if (fmt->precision != 0 && fmt->precision < size)
@@ -28,5 +27,5 @@ void		print_str(t_buffer *buff, t_fmt *fmt, t_args *args)
 		buff_addnchar(buff, ' ', padding);
 	buff_addnstr(buff, str, size);
 	if (fmt->flags & F_MINUS)
-		buff_addnchar(buff, ' ', fmt->width - size);
+		buff_addnchar(buff, ' ', padding);
 }

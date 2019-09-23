@@ -10,18 +10,15 @@
 #                                                                              #
 # **************************************************************************** #
 
-#NAME = libftprintf.a
-NAME = ftprintf
+NAME = libftprintf.a
 
-#FLAGS = -Wall -Wextra -Werror
-FLAGS = -g
+FLAGS = -Wall -Wextra -Werror
 
 CC = gcc $(FLAGS)
 
 INC = -Iinclude
 
-SRC =	main.c			\
-		ft_printf.c 	\
+SRC =	ft_printf.c 	\
 		buffer.c		\
 		ft_vprintf.c	\
 		parse.c			\
@@ -38,9 +35,8 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $^ -o $@
-#	ar rc $@ $^
-#	ranlib $@
+	ar rc $@ $^
+	ranlib $@
 
 obj/%.o: src/%.c
 	@mkdir -p obj/
