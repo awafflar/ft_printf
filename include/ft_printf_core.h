@@ -34,15 +34,15 @@ typedef struct		s_buffer
 	int				fd;
 	char			*str;
 	size_t			size;
-	int				pos;
+	unsigned int	pos;
 	int				total;
 }					t_buffer;
 
 typedef struct		s_fmt
 {
 	char			flags;
-	int				width;
-	int				precision;
+	size_t			width;
+	size_t			precision;
 	int				arg_n;
 	char			padd;
 	t_lenght		lenght;
@@ -56,7 +56,16 @@ typedef struct		s_args
 
 void				parse_core(t_fmt *fmt, const char **format, t_args *args);
 
+void				print_modulo(t_buffer *buff, t_fmt *fmt, t_args *args);
+void				print_str(t_buffer *buff, t_fmt *fmt, t_args *args);
+void				print_decimal(t_buffer *buff, t_fmt *fmt, t_args *args);
+
 size_t				ft_strlen(const char *s);
+int					ft_isdigit(char c);
+int					ft_atoi_lite(const char **str);
+char				*ft_lltostr(long long n, char *str);
+char				*ft_ulltostr(long long n, char *str, int base,
+						char *digits);
 
 void				buff_init(t_buffer *buff, t_bufftype type, int fd,
 						char *str, size_t size);

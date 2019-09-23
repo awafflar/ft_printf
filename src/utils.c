@@ -12,7 +12,7 @@
 
 #include <stddef.h>
 
-size_t			ft_strlen(const char *s)
+size_t		ft_strlen(const char *s)
 {
 	const char	*s1;
 
@@ -22,17 +22,62 @@ size_t			ft_strlen(const char *s)
 	return (s1 - s);
 }
 
-int				ft_isdigit(char c)
+int			ft_isdigit(char c)
 {
 	return (c >= '0' && c <= '9');
 }
 
-int				ft_atoi_lite(const char **str)
+int			ft_atoi_lite(const char **str)
 {
 	int		ret;
 
 	ret = 0;
 	while (ft_isdigit(**str))
 		ret = ret * 10 + *((*str)++) - '0';
+	return (ret);
+}
+
+char		*ft_lltostr(long long n, char *str)
+{
+	static char		buff[21];
+	char			*ret;
+
+	ret = buff + 20;
+	*ret = '\0';
+	if (n == 0)
+		*--ret = '0';
+	else if (n < 0)
+	{
+		while (n)
+		{
+			*--ret = '0' - (n % 10);
+			n /= 10;
+		}
+		*--ret = '-';
+	}
+	else
+		while (n)
+		{
+			*--ret = '0' +  n % 10;
+			n /= 10;
+		}
+	return (ret);
+}
+
+char		*ft_ulltostr_base(long long n, char *str, int base, char *digits)
+{
+	static char		buff[65];
+	char			*ret;
+
+	ret = buff + 64;
+	*ret = '\0';
+	if (n == 0)
+		*--ret = digits[0];
+	else
+		while (n)
+		{
+			*--ret = digits[n % base];
+			n /= base;
+		}
 	return (ret);
 }

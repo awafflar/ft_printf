@@ -13,7 +13,7 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <sys/type.h>
+# include <stddef.h>
 # include <stdarg.h>
 
 int			ft_printf(const char *format, ...);
@@ -26,3 +26,5 @@ int			ft_vfdprintf(int fd, const char *format, va_list ap);
 int			ft_vsprintf(char *str, const char *format, va_list ap);
 int			ft_vsnprintf(char *str, size_t size, const char *format,
 				va_list ap);
+
+#endif

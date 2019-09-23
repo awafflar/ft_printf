@@ -12,7 +12,7 @@
 
 #include <unistd.h>
 
-#include "ft_printf.h"
+#include "ft_printf_core.h"
 
 void		buff_init(t_buffer *buff, t_bufftype type, int fd,
 				char *str, size_t size)

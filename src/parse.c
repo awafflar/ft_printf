@@ -27,7 +27,7 @@ static int	p_width(t_fmt *fmt, const char **format, t_args *args)
 		star = 1;
 	}
 	if (ft_isdigit(**format))
-		tmp = ft_atoi_lite(**format);
+		tmp = ft_atoi_lite(format);
 	if (**format == '$')
 	{
 		(*format)++;
@@ -55,7 +55,7 @@ static int	p_preci(t_fmt *fmt, const char **format, t_args *args)
 		star = 1;
 	}
 	if (ft_isdigit(**format))
-		fmt->precision = ft_atoi_lite(**format);
+		fmt->precision = ft_atoi_lite(format);
 	if (**format == '$')
 	{
 		(*format)++;
@@ -86,9 +86,9 @@ static int	parse_loop(t_fmt *fmt, const char **format, t_args *args)
 		}
 	}
 	if (**format == '.')
-		return (p_preci(fmt, format, &args));
+		return (p_preci(fmt, format, args));
 	if (**format == '*' || ft_isdigit(**format))
-		return (p_width(fmt, format, &args));
+		return (p_width(fmt, format, args));
 	return (0);
 }
 
@@ -129,6 +129,7 @@ void		parse_core(t_fmt *fmt, const char **format, t_args *args)
 	fmt->width = 0;
 	fmt->precision = -1;
 	fmt->arg_n = 0;
+	fmt->padd = ' ';
 
 	while (parse_loop(fmt, format, args))
 		continue ;
