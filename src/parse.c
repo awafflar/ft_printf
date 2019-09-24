@@ -1,19 +1,6 @@
 #include <stdarg.h>
 
-#include "ft_printf.h"
 #include "ft_printf_core.h"
-
-static int	va_narg(va_list ap, int n)
-{
-	int		ret;
-	va_list	list;
-
-	va_copy(list, ap);
-	while (n--)
-		ret = va_arg(list, int);
-	va_end(list);
-	return (ret);
-}
 
 static int	p_width(t_fmt *fmt, const char **format, t_args *args)
 {	
@@ -32,12 +19,12 @@ static int	p_width(t_fmt *fmt, const char **format, t_args *args)
 	{
 		(*format)++;
 		if (star && tmp != 0)
-			fmt->width = va_narg(args->ap, tmp);
+			fmt->width = va_getarg_int(args->ap, tmp);
 		else if (tmp != 0)
 			fmt->arg_n = tmp;
 	}
 	else if (star && tmp == 0)
-		fmt->width = va_narg(args->ap, args->current++);
+		fmt->width = va_getarg_int(args->ap, args->current++);
 	else if (!star && tmp)
 		fmt->width = tmp;
 	return (1);
@@ -47,6 +34,7 @@ static int	p_preci(t_fmt *fmt, const char **format, t_args *args)
 {
 	int		star;
 
+	fmt->flags |= F_PRECI;
 	(*format)++;
 	star = 0;
 	if (**format == '*')
@@ -60,12 +48,12 @@ static int	p_preci(t_fmt *fmt, const char **format, t_args *args)
 	{
 		(*format)++;
 		if (star && fmt->precision != 0)
-			fmt->precision = va_narg(args->ap, fmt->precision);
+			fmt->precision = va_getarg_int(args->ap, fmt->precision);
 	}
 	else if (star)
 	{
 		if (fmt->precision == 0)
-			fmt->precision = va_narg(args->ap, args->current++);
+			fmt->precision = va_getarg_int(args->ap, args->current++);
 	}
 	return (1);
 }
@@ -127,7 +115,7 @@ void		parse_core(t_fmt *fmt, const char **format, t_args *args)
 {
 	fmt->flags = 0;
 	fmt->width = 0;
-	fmt->precision = -1;
+	fmt->precision = 0;
 	fmt->arg_n = 0;
 	fmt->padd = ' ';
 

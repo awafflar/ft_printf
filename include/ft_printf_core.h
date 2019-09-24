@@ -11,6 +11,7 @@
 # define F_SPACE	4
 # define F_ZERO		8
 # define F_SHARP	16
+# define F_PRECI	32
 
 typedef enum		e_bufftype
 {
@@ -73,6 +74,28 @@ void				buff_addnchar(t_buffer *buff, const char c, size_t n);
 void				buff_addstr(t_buffer *buff, const char *s);
 void				buff_addnstr(t_buffer *buff, const char *s, size_t n);
 void				buff_flush(t_buffer *buff);
+
+char				va_getarg_char(va_list ap, int argn);
+short				va_getarg_short(va_list ap, int argn);
+int					va_getarg_int(va_list ap, int argn);
+long				va_getarg_long(va_list ap, int argn);
+long long			va_getarg_longlong(va_list ap, int argn);
+
+unsigned char		va_getarg_uchar(va_list ap, int argn);
+unsigned short		va_getarg_ushort(va_list ap, int argn);
+unsigned int		va_getarg_uint(va_list ap, int argn);
+unsigned long		va_getarg_ulong(va_list ap, int argn);
+unsigned long long	va_getarg_ulonglong(va_list ap, int argn);
+
+char				*va_getarg_charptr(va_list ap, int argn);
+short				*va_getarg_shortptr(va_list ap, int argn);
+int					*va_getarg_intptr(va_list ap, int argn);
+long				*va_getarg_longptr(va_list ap, int argn);
+long long			*va_getarg_longlongptr(va_list ap, int argn);
+
+char				*va_getarg_str(va_list ap, int argn);
+void				*va_getarg_ptr(va_list ap, int argn);
+double				va_getarg_double(va_list ap, int argn);
 
 void				ft_printf__(t_buffer *buff, const char *format,
 						va_list ap);

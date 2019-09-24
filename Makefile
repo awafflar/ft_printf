@@ -18,15 +18,19 @@ CC = gcc $(FLAGS)
 
 INC = -Iinclude
 
-SRC =	ft_printf.c 	\
-		buffer.c		\
-		ft_vprintf.c	\
-		parse.c			\
-		printf_core.c	\
-		print_decimal.c	\
-		print_modulo.c	\
-		print_string.c	\
-		utils.c
+SRC =	ft_printf.c 			\
+		buffer.c				\
+		ft_vprintf.c			\
+		parse.c					\
+		printf_core.c			\
+		print_decimal.c			\
+		print_modulo.c			\
+		print_string.c			\
+		utils.c					\
+		get_args_misc.c			\
+		get_args_signed.c		\
+		get_args_signedptr.c	\
+		get_args_unsigned.c
 
 OBJ = $(SRC:%.c=obj/%.o)
 

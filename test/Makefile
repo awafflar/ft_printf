@@ -1,6 +1,6 @@
 NAME = ft_printf
 
-FLAG = -Wall -Werror -Wextra -g
+FLAG = -g
 
 SRC =	main.c\
 
@@ -13,6 +13,7 @@ LIB = -L../ -lftprintf
 CC  = gcc $(FLAG)
 
 $(NAME):  $(OBJ)
+	make -C ../
 	$(CC) $^ $(LIB) -o $@
 
 all: $(NAME)
@@ -25,6 +26,7 @@ clean:
 	rm -f $(OBJ)
 
 fclean: clean
+	make -C ../ fclean
 	rm -f $(NAME)
 	rm -rf obj
 
