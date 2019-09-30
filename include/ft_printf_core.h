@@ -47,6 +47,7 @@ typedef struct		s_fmt
 	int				arg_n;
 	char			padd;
 	t_lenght		lenght;
+	int				uppercase;
 }					t_fmt;
 
 typedef struct		s_args
@@ -60,12 +61,25 @@ void				parse_core(t_fmt *fmt, const char **format, t_args *args);
 void				print_modulo(t_buffer *buff, t_fmt *fmt, t_args *args);
 void				print_str(t_buffer *buff, t_fmt *fmt, t_args *args);
 void				print_decimal(t_buffer *buff, t_fmt *fmt, t_args *args);
+void				print_hexa(t_buffer *buff, t_fmt *fmt, t_args *args);
 
 size_t				ft_strlen(const char *s);
 int					ft_isdigit(char c);
 int					ft_atoi_lite(const char **str);
 char				*ft_lltostr(long long n);
-char				*ft_ulltostr(long long n, int base, char *digits);
+char				*ft_ulltostr_base(long long n, int base, char *digits);
+
+char			*oux_uchar_tostring(t_args *args, int base, int uppercase);
+char			*oux_ushort_tostring(t_args *args, int base, int uppercase);
+char			*oux_uint_tostring(t_args *args, int base, int uppercase);
+char			*oux_ulong_tostring(t_args *args, int base, int uppercase);
+char			*oux_ulonglong_tostring(t_args *args, int base, int uppercase);
+
+char				*di_char_tostring(t_args *args);
+char				*di_short_tostring(t_args *args);
+char				*di_int_tostring(t_args *args);
+char				*di_long_tostring(t_args *args);
+char				*di_longlong_tostring(t_args *args);
 
 void				buff_init(t_buffer *buff, t_bufftype type, int fd,
 						char *str, size_t size);

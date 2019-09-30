@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_vprintf.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/30 14:30:44 by awafflar          #+#    #+#             */
+/*   Updated: 2019/09/30 15:33:23 by awafflar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 
 #include "ft_printf.h"
 #include "ft_printf_core.h"
 
-int				ft_vprintf(const char *format, va_list ap)
+int		ft_vprintf(const char *format, va_list ap)
 {
 	return (ft_vfdprintf(1, format, ap));
 }
 
-int				ft_vfdprintf(int fd, const char *format, va_list ap)
+int		ft_vfdprintf(int fd, const char *format, va_list ap)
 {
 	t_buffer	buff;
 	char		*str;
@@ -21,7 +33,7 @@ int				ft_vfdprintf(int fd, const char *format, va_list ap)
 	return (buff.total);
 }
 
-int				ft_vsprintf(char *str, const char *format, va_list ap)
+int		ft_vsprintf(char *str, const char *format, va_list ap)
 {
 	t_buffer	buff;
 
@@ -30,8 +42,7 @@ int				ft_vsprintf(char *str, const char *format, va_list ap)
 	return (buff.total);
 }
 
-int				ft_vsnprintf(char *str, size_t size, const char *format,
-					va_list ap)
+int		ft_vsnprintf(char *str, size_t size, const char *format, va_list ap)
 {
 	t_buffer	buff;
 

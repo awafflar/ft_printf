@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/30 14:31:38 by awafflar          #+#    #+#             */
+/*   Updated: 2019/09/30 17:35:18 by awafflar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdarg.h>
 
 #include "ft_printf_core.h"
 
 static int	p_width(t_fmt *fmt, const char **format, t_args *args)
-{	
+{
 	int		star;
 	int		tmp;
 
@@ -82,9 +94,10 @@ static int	parse_loop(t_fmt *fmt, const char **format, t_args *args)
 
 static void	parse_lenght(t_fmt *fmt, const char **format)
 {
+	if (**format == 'h' || **format == 'l' || **format == 'L')
+		(*format)++;
 	if (**format == 'h')
 	{
-		(*format)++;
 		if (**format == 'h')
 		{
 			(*format)++;
@@ -95,7 +108,6 @@ static void	parse_lenght(t_fmt *fmt, const char **format)
 	}
 	else if (**format == 'l')
 	{
-		(*format)++;
 		if (**format == 'l')
 		{
 			(*format)++;
@@ -105,10 +117,7 @@ static void	parse_lenght(t_fmt *fmt, const char **format)
 			fmt->lenght = L;
 	}
 	else if (**format == 'L')
-	{
-		(*format)++;
 		fmt->lenght = BIGL;
-	}
 }
 
 void		parse_core(t_fmt *fmt, const char **format, t_args *args)
@@ -118,7 +127,7 @@ void		parse_core(t_fmt *fmt, const char **format, t_args *args)
 	fmt->precision = 0;
 	fmt->arg_n = 0;
 	fmt->padd = ' ';
-
+	fmt->uppercase = 0;
 	while (parse_loop(fmt, format, args))
 		continue ;
 	if (fmt->flags & F_PLUS)

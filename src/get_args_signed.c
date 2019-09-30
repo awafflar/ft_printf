@@ -1,30 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_args_signed.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/30 14:31:12 by awafflar          #+#    #+#             */
+/*   Updated: 2019/09/30 16:43:11 by awafflar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf_core.h"
-
-/*
-char				va_getarg_char(va_list ap, int argn)
-{
-	va_list			ap_tmp;
-	char			ret;
-
-	va_copy(ap_tmp, ap);
-	while (argn--)
-		ret = va_arg(ap_tmp, char);
-	va_end(ap_tmp);
-	return (ret);
-}
-
-short				va_getarg_short(va_list ap, int argn)
-{
-	va_list			ap_tmp;
-	short			ret;
-
-	va_copy(ap_tmp, ap);
-	while (argn--)
-		ret = va_arg(ap_tmp, short);
-	va_end(ap_tmp);
-	return (ret);
-}
-*/
 
 int					va_getarg_int(va_list ap, int argn)
 {

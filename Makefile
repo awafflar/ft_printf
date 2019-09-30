@@ -6,7 +6,7 @@
 #    By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/18 09:38:44 by awafflar          #+#    #+#              #
-#    Updated: 2019/09/18 14:23:51 by awafflar         ###   ########.fr        #
+#    Updated: 2019/09/30 17:42:53 by awafflar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,17 +20,21 @@ INC = -Iinclude
 
 SRC =	ft_printf.c 			\
 		buffer.c				\
+		buffer_add.c			\
+		di_tostring.c			\
 		ft_vprintf.c			\
 		parse.c					\
 		printf_core.c			\
 		print_decimal.c			\
+		print_hexa.c			\
 		print_modulo.c			\
 		print_string.c			\
 		utils.c					\
 		get_args_misc.c			\
 		get_args_signed.c		\
 		get_args_signedptr.c	\
-		get_args_unsigned.c
+		get_args_unsigned.c		\
+		oux_tostring.c
 
 OBJ = $(SRC:%.c=obj/%.o)
 

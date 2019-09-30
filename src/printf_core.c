@@ -1,19 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   printf_core.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/30 14:32:05 by awafflar          #+#    #+#             */
+/*   Updated: 2019/09/30 17:49:05 by awafflar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 #include "ft_printf_core.h"
 
 static int		printf_switch(t_buffer *buff, t_fmt *fmt,
 					const char *format, t_args *args)
 {
-	static char	flags[3] = "%sd";
-	static void (*fun[3])(t_buffer *, t_fmt *, t_args *) = 
+	static char	flags[6] = "%sdixX";
+	static void (*fun[6])(t_buffer *, t_fmt *, t_args *) =
 				{
-					print_modulo, print_str, print_decimal
+					print_modulo, print_str, print_decimal, print_decimal, 
+					print_hexa, print_hexa
 				};
 	int			i;
 
 	i = -1;
 	while (++i < 3)
 	{
+		if (*format == 'X')
+			fmt->uppercase = 1;
 		if (*format == flags[i])
 		{
 			fun[i](buff, fmt, args);
@@ -51,4 +66,3 @@ void			ft_printf__(t_buffer *buff, const char *format, va_list ap)
 	buff_flush(buff);
 	va_end(args.ap);
 }
-

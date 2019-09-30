@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 14:20:27 by awafflar          #+#    #+#             */
-/*   Updated: 2019/09/18 14:22:41 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/09/30 15:12:54 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char		*ft_lltostr(long long n)
 	else
 		while (n)
 		{
-			*--ret = '0' +  n % 10;
+			*--ret = '0' + n % 10;
 			n /= 10;
 		}
 	return (ret);

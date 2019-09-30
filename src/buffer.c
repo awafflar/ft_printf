@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 13:34:33 by awafflar          #+#    #+#             */
-/*   Updated: 2019/09/19 15:07:08 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/09/30 14:35:08 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,36 +23,6 @@ void		buff_init(t_buffer *buff, t_bufftype type, int fd,
 	buff->size = (buff->type == NSTR ? size - 1 : size);
 	buff->pos = 0;
 	buff->total = 0;
-}
-
-void		buff_addchar(t_buffer *buff, const char c)
-{
-	buff->total++;
-	if (buff->pos == buff->size && buff->type != STR)
-	{
-		if (buff->type == NSTR)
-			return ;
-		buff_flush(buff);
-	}
-	buff->str[buff->pos++] = c;
-}
-
-void		buff_addnchar(t_buffer *buff, const char c, size_t n)
-{
-	while (n--)
-		buff_addchar(buff, c);
-}
-
-void		buff_addstr(t_buffer *buff, const char *s)
-{
-	while (*s)
-		buff_addchar(buff, *s++);
-}
-
-void		buff_addnstr(t_buffer *buff, const char *s, size_t n)
-{
-	while (n-- && *s)
-		buff_addchar(buff, *s++);
 }
 
 void		buff_flush(t_buffer *buff)
