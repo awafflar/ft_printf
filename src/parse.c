@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 14:31:38 by awafflar          #+#    #+#             */
-/*   Updated: 2019/09/30 17:35:18 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/01 15:24:19 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,30 +94,31 @@ static int	parse_loop(t_fmt *fmt, const char **format, t_args *args)
 
 static void	parse_lenght(t_fmt *fmt, const char **format)
 {
-	if (**format == 'h' || **format == 'l' || **format == 'L')
-		(*format)++;
 	if (**format == 'h')
 	{
+		fmt->lenght = H;
+		(*format)++;
 		if (**format == 'h')
 		{
 			(*format)++;
 			fmt->lenght = HH;
 		}
-		else
-			fmt->lenght = H;
 	}
 	else if (**format == 'l')
 	{
+		fmt->lenght = L;
+		(*format)++;
 		if (**format == 'l')
 		{
 			(*format)++;
 			fmt->lenght = LL;
 		}
-		else
-			fmt->lenght = L;
 	}
 	else if (**format == 'L')
+	{
+		(*format)++;
 		fmt->lenght = BIGL;
+	}
 }
 
 void		parse_core(t_fmt *fmt, const char **format, t_args *args)
@@ -127,6 +128,7 @@ void		parse_core(t_fmt *fmt, const char **format, t_args *args)
 	fmt->precision = 0;
 	fmt->arg_n = 0;
 	fmt->padd = ' ';
+	fmt->lenght = I;
 	fmt->uppercase = 0;
 	while (parse_loop(fmt, format, args))
 		continue ;

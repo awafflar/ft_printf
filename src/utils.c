@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 14:20:27 by awafflar          #+#    #+#             */
-/*   Updated: 2019/09/30 15:12:54 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/01 14:05:36 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char		*ft_lltostr(long long n)
 	return (ret);
 }
 
-char		*ft_ulltostr_base(long long n, int base, char *digits)
+char		*ft_ulltostr_base(unsigned long long n, int base, char *digits)
 {
 	static char		buff[65];
 	char			*ret;

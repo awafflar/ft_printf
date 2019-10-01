@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 14:31:00 by awafflar          #+#    #+#             */
-/*   Updated: 2019/09/30 14:31:04 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/01 12:53:28 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char				*va_getarg_str(va_list ap, int argn)
 	while (argn--)
 		ret = va_arg(ap_tmp, char *);
 	va_end(ap_tmp);
+	if (ret == NULL)
+		return ("(null)");
 	return (ret);
 }
 

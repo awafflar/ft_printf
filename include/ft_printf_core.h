@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 12:14:11 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/01 12:15:43 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/01 15:29:37 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 # include "ft_printf.h"
 
-# define BUFF_SIZE	64
 # define F_PLUS		1
 # define F_MINUS	2
 # define F_SPACE	4
@@ -34,6 +33,7 @@ typedef enum		e_bufftype
 
 typedef enum		e_lenght
 {
+	I,
 	H,
 	HH,
 	L,
@@ -79,7 +79,8 @@ size_t				ft_strlen(const char *s);
 int					ft_isdigit(char c);
 int					ft_atoi_lite(const char **str);
 char				*ft_lltostr(long long n);
-char				*ft_ulltostr_base(long long n, int base, char *digits);
+char				*ft_ulltostr_base(unsigned long long n, int base,
+						char *digits);
 
 char				*oux_uchar_tostring(t_args *args, int base, int uppercase);
 char				*oux_ushort_tostring(t_args *args, int base, int uppercase);
@@ -126,5 +127,7 @@ double				va_getarg_double(va_list ap, int argn);
 
 void				ft_printf__(t_buffer *buff, const char *format,
 						va_list ap);
+
+char				*get_str_from_oux_lenght(t_fmt *fmt, t_args *args);
 
 #endif

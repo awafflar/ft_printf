@@ -6,7 +6,7 @@
 #    By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/18 09:38:44 by awafflar          #+#    #+#              #
-#    Updated: 2019/09/30 17:42:53 by awafflar         ###   ########.fr        #
+#    Updated: 2019/10/01 15:29:56 by awafflar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ INC = -Iinclude
 SRC =	ft_printf.c 			\
 		buffer.c				\
 		buffer_add.c			\
+		conversion.c			\
 		di_tostring.c			\
 		ft_vprintf.c			\
 		parse.c					\
