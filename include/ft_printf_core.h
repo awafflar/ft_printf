@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_core.h                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/01 12:14:11 by awafflar          #+#    #+#             */
+/*   Updated: 2019/10/01 12:15:43 by awafflar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_CORE_H
 # define FT_PRINTF_CORE_H
 
-#include <stdarg.h>
+# include <stdarg.h>
 
-#include "ft_printf.h"
+# include "ft_printf.h"
 
-# define BUFF_SIZE	10
+# define BUFF_SIZE	64
 # define F_PLUS		1
 # define F_MINUS	2
 # define F_SPACE	4
@@ -69,11 +81,12 @@ int					ft_atoi_lite(const char **str);
 char				*ft_lltostr(long long n);
 char				*ft_ulltostr_base(long long n, int base, char *digits);
 
-char			*oux_uchar_tostring(t_args *args, int base, int uppercase);
-char			*oux_ushort_tostring(t_args *args, int base, int uppercase);
-char			*oux_uint_tostring(t_args *args, int base, int uppercase);
-char			*oux_ulong_tostring(t_args *args, int base, int uppercase);
-char			*oux_ulonglong_tostring(t_args *args, int base, int uppercase);
+char				*oux_uchar_tostring(t_args *args, int base, int uppercase);
+char				*oux_ushort_tostring(t_args *args, int base, int uppercase);
+char				*oux_uint_tostring(t_args *args, int base, int uppercase);
+char				*oux_ulong_tostring(t_args *args, int base, int uppercase);
+char				*oux_ulonglong_tostring(t_args *args, int base,
+						int uppercase);
 
 char				*di_char_tostring(t_args *args);
 char				*di_short_tostring(t_args *args);
@@ -81,8 +94,8 @@ char				*di_int_tostring(t_args *args);
 char				*di_long_tostring(t_args *args);
 char				*di_longlong_tostring(t_args *args);
 
-void				buff_init(t_buffer *buff, t_bufftype type, int fd,
-						char *str, size_t size);
+void				buff_init(t_buffer *buff, t_bufftype type, char *str,
+						size_t size);
 void				buff_addchar(t_buffer *buff, const char c);
 void				buff_addnchar(t_buffer *buff, const char c, size_t n);
 void				buff_addstr(t_buffer *buff, const char *s);

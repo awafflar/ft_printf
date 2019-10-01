@@ -6,22 +6,23 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 14:32:05 by awafflar          #+#    #+#             */
-/*   Updated: 2019/09/30 17:49:05 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/01 11:59:20 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "ft_printf_core.h"
 
-static int		printf_switch(t_buffer *buff, t_fmt *fmt,
-					const char *format, t_args *args)
+static void		(*g_fun[])(t_buffer *, t_fmt *, t_args *) =
 {
-	static char	flags[6] = "%sdixX";
-	static void (*fun[6])(t_buffer *, t_fmt *, t_args *) =
-				{
-					print_modulo, print_str, print_decimal, print_decimal, 
-					print_hexa, print_hexa
-				};
+	print_modulo, print_str, print_decimal, print_decimal,
+	print_hexa, print_hexa
+};
+
+static int		printf_switch(t_buffer *buff, t_fmt *fmt, const char *format,
+					t_args *args)
+{
+	static char	flags[] = "%sdixX";
 	int			i;
 
 	i = -1;
@@ -31,7 +32,7 @@ static int		printf_switch(t_buffer *buff, t_fmt *fmt,
 			fmt->uppercase = 1;
 		if (*format == flags[i])
 		{
-			fun[i](buff, fmt, args);
+			g_fun[i](buff, fmt, args);
 			return (0);
 		}
 	}

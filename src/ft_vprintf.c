@@ -6,13 +6,12 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 14:30:44 by awafflar          #+#    #+#             */
-/*   Updated: 2019/09/30 15:33:23 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/01 12:29:18 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-#include "ft_printf.h"
 #include "ft_printf_core.h"
 
 int		ft_vprintf(const char *format, va_list ap)
@@ -24,10 +23,13 @@ int		ft_vfdprintf(int fd, const char *format, va_list ap)
 {
 	t_buffer	buff;
 	char		*str;
-	
-	if (!(str = (char*)malloc(BUFF_SIZE * sizeof(char))))
+	size_t		buff_size;
+
+	buff_size = 64;
+	if (!(str = (char*)malloc(buff_size * sizeof(char))))
 		return (-1);
-	buff_init(&buff, FD, fd, str, BUFF_SIZE);
+	buff.fd = fd;
+	buff_init(&buff, FD, str, buff_size);
 	ft_printf__(&buff, format, ap);
 	free(str);
 	return (buff.total);
@@ -37,7 +39,8 @@ int		ft_vsprintf(char *str, const char *format, va_list ap)
 {
 	t_buffer	buff;
 
-	buff_init(&buff, STR, 0, str, 0);
+	buff.fd = 0;
+	buff_init(&buff, STR, str, 0);
 	ft_printf__(&buff, format, ap);
 	return (buff.total);
 }
@@ -46,7 +49,8 @@ int		ft_vsnprintf(char *str, size_t size, const char *format, va_list ap)
 {
 	t_buffer	buff;
 
-	buff_init(&buff, NSTR, 0, str, size);
+	buff.fd = 0;
+	buff_init(&buff, NSTR, str, size);
 	ft_printf__(&buff, format, ap);
 	return (buff.total);
 }
