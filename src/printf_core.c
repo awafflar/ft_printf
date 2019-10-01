@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 14:32:05 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/01 16:30:46 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/01 18:17:44 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,7 @@ void			ft_printf__(t_buffer *buff, const char *format, va_list ap)
 			format++;
 			parse_core(&fmt, &format, &args);
 			if (printf_switch(buff, &fmt, format, &args) == -1)
-			{
-				buff->total = -1;
 				break ;
-			}
 		}
 		format++;
 	}

@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 14:32:00 by awafflar          #+#    #+#             */
-/*   Updated: 2019/09/30 14:32:02 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/01 16:47:37 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void		print_str(t_buffer *buff, t_fmt *fmt, t_args *args)
 	size_t	size;
 	size_t	padding;
 
-	str = va_getarg_str(args->ap, args->current++);
+	str = va_getarg_str(args->ap, args->current);
 	size = ft_strlen(str);
 	if (fmt->flags & F_PRECI && fmt->precision < size)
 		size = fmt->precision;
