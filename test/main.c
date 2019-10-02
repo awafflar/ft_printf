@@ -143,6 +143,9 @@ int     string_test(int test_count)
         "%-25.21s",
         "%-25.22s",
         "%-25.25s",
+		"% s",
+		"% 4s",
+		"% 4.2s",
         NULL
     };
 
@@ -205,6 +208,7 @@ int     hexa_test(int test_count)
 		"%llX",
 		"%Lx",
 		"%LX",
+		"%#04x",
         NULL
     };
     int    value[] =
@@ -298,6 +302,17 @@ int     int_test(int test_count)
         "%+0-3d",
         "%+0-3.d",
         "%+0-3.2d",
+		"% d",
+		"% 4d",
+		"% 4.2d",
+		"% +4.2d",
+		"% 0+4.2d",
+		"% 0+-4.2d",
+		"% #0+-4.2d",
+		"%hhd",
+		"%hd",
+		"%ld",
+		"%lld",
         NULL
     };
     int    value[] =
@@ -329,7 +344,7 @@ int     int_test(int test_count)
         {
             test_count++;
 			printf_ret = snprintf(printf_str, 50, format[i], value[j]);
-            ft_printf_ret = ft_snprintf(ft_printf_str, 50, format[i], value[j]);
+			ft_printf_ret = ft_snprintf(ft_printf_str, 50, format[i], value[j]);
             if (printf_ret != ft_printf_ret || strcmp(printf_str, ft_printf_str))
             {
                 printf("Error Test %d : printf(%s, %d)\n", test_count, format[i], value[j]);

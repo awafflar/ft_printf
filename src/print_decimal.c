@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 14:31:43 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/02 18:33:00 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/02 20:12:38 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static void		print_padding(t_buffer *buff, t_fmt *fmt, size_t size, char **s)
 			fmt->width - combined_size - n_zero;
 	if (fmt->flags & F_PRECI && fmt->precision == 0 && **s == '0' && width > 0)
 		width++;
+	if (width == 0 && fmt->flags & F_SPACE && fmt->minus_sign == 0)
+		buff_addchar(buff, ' ');
 	buff_addnchar(buff, ' ', width);
 }
 
@@ -71,6 +73,8 @@ void			print_decimal(t_buffer *buff, t_fmt *fmt, t_args *args)
 	size = ft_strlen(str);
 	if (fmt->width != 0 && !(fmt->flags & F_MINUS))
 		print_padding(buff, fmt, size, &str);
+	else if (fmt->flags & F_SPACE && fmt->minus_sign == 0)
+		buff_addchar(buff, ' ');
 	print_sign(buff, fmt);
 	print_zero(buff, fmt, size);
 	if (!(fmt->flags & F_PRECI && fmt->precision == 0 && *str == '0'))
