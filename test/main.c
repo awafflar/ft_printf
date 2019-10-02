@@ -148,9 +148,9 @@ int     string_test(int test_count)
 
     for (int i = 0; format[i] ; i++)
     {
-        test_count++;
-        printf_ret = snprintf(printf_str, 50, format[i], "Ceci est un test");
-        ft_printf_ret = ft_snprintf(ft_printf_str, 50, format[i], "Ceci est un test");
+		test_count++;
+		printf_ret = snprintf(printf_str, 50, format[i], "Ceci est un test");
+		ft_printf_ret = ft_snprintf(ft_printf_str, 50, format[i], "Ceci est un test");
 
         if (printf_ret != ft_printf_ret || strcmp(printf_str, ft_printf_str))
         {
@@ -162,6 +162,93 @@ int     string_test(int test_count)
     }
     return (test_count);
 }
+
+int     hexa_test(int test_count)
+{
+    int     ft_printf_ret = 0;
+    int     printf_ret = 0;
+
+    char    ft_printf_str[50];
+    char    printf_str[50];
+
+    char    *format[] =
+    {
+        "%x",
+        "%X",
+        "%.6x",
+        "%.6X",
+        "%5x",
+        "%5X",
+        "%-x",
+        "%-X",
+        "%+x",
+        "%+X",
+        "%0x",
+        "%0X",
+        "%#x",
+        "%#X",
+		"% x",
+		"% X",
+		"% 10x",
+		"% 10X",
+        "%#0-3.2x",
+        "%#0-3.2X",
+        "%#0+- 10.2x",
+        "%#0+- 10.2X",
+		"%hhx",
+		"%hhX",
+		"%hx",
+		"%hX",
+		"%lx",
+		"%lX",
+		"%llx",
+		"%llX",
+		"%Lx",
+		"%LX",
+        NULL
+    };
+    int    value[] =
+    {
+        0,
+        1,
+        5,
+        9,
+        10,
+        42,
+        99,
+        100,
+        123456,
+        987654,
+        -1,
+        -5,
+        -9,
+        -10,
+        -42,
+        -99,
+        -100,
+        -123456,
+        -987654
+    };
+
+    for (int i = 0; format[i] ; i++)
+    {
+        for (int j = 0; j < 18; j++)
+        {
+            test_count++;
+			printf_ret = snprintf(printf_str, 50, format[i], value[j]);
+            ft_printf_ret = ft_snprintf(ft_printf_str, 50, format[i], value[j]);
+            if (printf_ret != ft_printf_ret || strcmp(printf_str, ft_printf_str))
+            {
+                printf("Error Test %d : printf(%s, %d)\n", test_count, format[i], value[j]);
+                printf("Sortie printf    : \"%s\" (%d)\n", printf_str, printf_ret);
+                printf("Sortie ft_printf : \"%s\" (%d)\n", ft_printf_str, ft_printf_ret);
+                return (-1);
+            }
+        }
+    }
+    return (test_count);
+}
+
 
 int     int_test(int test_count)
 {
@@ -188,22 +275,22 @@ int     int_test(int test_count)
         "%03.d",
         "%03.2d",
         "%0-d",
-        "%0-.d"
+        "%0-.d",
         "%0-3d",
         "%0-3.d",
         "%0-3.2d",
         "%+d",
-        "%+.d"
+        "%+.d",
         "%+3d",
         "%+3.d",
         "%+3.2d",
         "%+-d",
-        "%+-.d"
+        "%+-.d",
         "%+-3d",
         "%+-3.d",
         "%+-3.2d",
         "%+0d",
-        "%+0.d"
+        "%+0.d",
         "%+03d",
         "%+03.d",
         "%+03.2d",
@@ -241,7 +328,7 @@ int     int_test(int test_count)
         for (int j = 0; j < 18; j++)
         {
             test_count++;
-            printf_ret = snprintf(printf_str, 50, format[i], value[j]);
+			printf_ret = snprintf(printf_str, 50, format[i], value[j]);
             ft_printf_ret = ft_snprintf(ft_printf_str, 50, format[i], value[j]);
             if (printf_ret != ft_printf_ret || strcmp(printf_str, ft_printf_str))
             {
@@ -265,6 +352,9 @@ int main()
     test_count = int_test(test_count);
     if (test_count == -1)
         return (-1);
-
+	test_count = hexa_test(test_count);
+	if (test_count == -1)
+		return (-1);
+	printf("%d TESTS SUCCESSFUL\n", test_count);
 	return (0);
 }

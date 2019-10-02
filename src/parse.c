@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 14:31:38 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/01 15:24:19 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/02 17:41:35 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,9 +127,10 @@ void		parse_core(t_fmt *fmt, const char **format, t_args *args)
 	fmt->width = 0;
 	fmt->precision = 0;
 	fmt->arg_n = 0;
-	fmt->padd = ' ';
 	fmt->lenght = I;
 	fmt->uppercase = 0;
+	fmt->plus_sign = 0;
+	fmt->minus_sign = 0;
 	while (parse_loop(fmt, format, args))
 		continue ;
 	if (fmt->flags & F_PLUS)

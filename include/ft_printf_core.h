@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 12:14:11 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/01 15:29:37 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/02 17:41:10 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,10 @@ typedef struct		s_fmt
 	size_t			width;
 	size_t			precision;
 	int				arg_n;
-	char			padd;
 	t_lenght		lenght;
 	int				uppercase;
+	int				plus_sign;
+	int				minus_sign;
 }					t_fmt;
 
 typedef struct		s_args
@@ -129,5 +130,6 @@ void				ft_printf__(t_buffer *buff, const char *format,
 						va_list ap);
 
 char				*get_str_from_oux_lenght(t_fmt *fmt, t_args *args);
+char				*get_str_from_di_lenght(t_fmt *fmt, t_args *args);
 
 #endif

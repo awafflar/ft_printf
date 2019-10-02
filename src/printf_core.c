@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 14:32:05 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/01 18:17:44 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/02 14:03:56 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static int		printf_switch(t_buffer *buff, t_fmt *fmt, const char *format,
 		if (*format == flags[i])
 		{
 			g_fun[i](buff, fmt, args);
-			args->current++;
 			return (0);
 		}
 	}
