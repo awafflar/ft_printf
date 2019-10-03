@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 15:27:36 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/03 10:50:28 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/03 15:33:20 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,14 @@ char			*get_str_from_di_lenght(t_fmt *fmt, t_args *args)
 		return (di_longlong_tostring(args));
 	else
 		return (di_int_tostring(args));
+}
+
+char			*get_str_from_pointer(t_args *args)
+{
+	void		*ptr;
+
+	ptr = va_getarg_ptr(args->ap, args->current++);
+	if (ptr == NULL)
+		return ("0");
+	return (ft_ulltostr_base((unsigned long long)ptr, 16, "0123456789abcdef"));
 }

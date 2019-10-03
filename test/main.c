@@ -575,6 +575,165 @@ int     octal_test(int test_count)
     return (test_count);
 }
 
+int     char_test(int test_count)
+{
+    int     ft_printf_ret = 0;
+    int     printf_ret = 0;
+
+    char    ft_printf_str[50];
+    char    printf_str[50];
+    char    *format[] = {
+        "%c",
+        "%4c",
+        "%25c",
+        "%.c",
+        "%.1c",
+        "%.2c",
+        "%.25c",
+        "%1.1c",
+        "%1.4c",
+        "%3.1c",
+        "%3.4c",
+        "%-4c",
+        "%-.c",
+        "%-.1c",
+        "%-.4c",
+        "%-1.1c",
+        "%-1.4c",
+        "%-3.1c",
+        "%-3.4c",
+        "%-10.1c",
+        "%-10.4c",
+		"% c",
+		"% 4c",
+		"% 4.2c",
+        NULL
+    };
+
+    for (int i = 0; format[i] ; i++)
+    {
+		test_count++;
+		printf_ret = snprintf(printf_str, 50, format[i], 'c');
+		ft_printf_ret = ft_snprintf(ft_printf_str, 50, format[i], 'c');
+
+        if (printf_ret != ft_printf_ret || strcmp(printf_str, ft_printf_str))
+        {
+            printf("Error Test %d : printf(%s, \"%c\")\n", test_count, format[i], 'c');
+            printf("Sortie printf    : \"%s\" (%d)\n", printf_str, printf_ret);
+            printf("Sortie ft_printf : \"%s\" (%d)\n", ft_printf_str, ft_printf_ret);
+            return (-1);
+        }
+    }
+    return (test_count);
+}
+
+int     pointer_test(int test_count)
+{
+    int     ft_printf_ret = 0;
+    int     printf_ret = 0;
+
+    char    ft_printf_str[50];
+    char    printf_str[50];
+
+    char    *format[] =
+    {
+        "%p",
+        "%.p",
+        "%3p",
+        "%3.p",
+        "%3.2p",
+        "%-p",
+        "%-.p",
+        "%-3p",
+        "%-3.2p",
+        "%0p",
+        "%0.p",
+        "%03p",
+        "%03.p",
+        "%03.2p",
+        "%0-p",
+        "%0-.p",
+        "%0-3p",
+        "%0-3.p",
+        "%0-3.2p",
+        "%+p",
+        "%+.p",
+        "%+3p",
+        "%+3.p",
+        "%+3.2p",
+        "%+-p",
+        "%+-.p",
+        "%+-3p",
+        "%+-3.p",
+        "%+-3.2p",
+        "%+0p",
+        "%+0.p",
+        "%+03p",
+        "%+03.p",
+        "%+03.2p",
+        "%+0-p",
+        "%+0-3p",
+        "%+0-3.p",
+        "%+0-3.2p",
+		"% p",
+		"% 4p",
+		"% 4.2p",
+		"% +4.2p",
+		"% 0+4.2p",
+		"% 0+-4.2p",
+		"% #0+-4.2p",
+		"%hhp",
+		"%hp",
+		"%lp",
+		"%llp",
+		"%#p",
+		"%# p",
+		"%#0-3.2p",
+        "%#0+- 10.2p",
+		NULL
+    };
+    int    value[] =
+    {
+        0,
+        1,
+        5,
+        9,
+        10,
+        42,
+        99,
+        100,
+        123456,
+        987654,
+        -1,
+        -5,
+        -9,
+        -10,
+        -42,
+        -99,
+        -100,
+        -123456,
+        -987654,
+    };
+
+    for (int i = 0; format[i] ; i++)
+    {
+        for (int j = 0; j < 18; j++)
+        {
+            test_count++;
+			printf_ret = snprintf(printf_str, 50, format[i], &value[j]);
+			ft_printf_ret = ft_snprintf(ft_printf_str, 50, format[i], &value[j]);
+            if (printf_ret != ft_printf_ret || strcmp(printf_str, ft_printf_str))
+            {
+                printf("Error Test %d : printf(%s, %p)\n", test_count, format[i], &value[j]);
+                printf("Sortie printf    : \"%s\" (%d)\n", printf_str, printf_ret);
+                printf("Sortie ft_printf : \"%s\" (%d)\n", ft_printf_str, ft_printf_ret);
+                return (-1);
+            }
+        }
+    }
+    return (test_count);
+}
+
 
 int main()
 {
@@ -600,6 +759,19 @@ int main()
 	if (test_count == -1)
 		return (-1);
 	printf("Octal tests OK\n");
+	test_count = char_test(test_count);
+	if (test_count == -1)
+		return (-1);
+	printf("Char tests OK\n");
+	test_count = pointer_test(test_count);
+	if (test_count == -1)
+		return (-1);
+	printf("Pointer tests OK\n");
 	printf("%d TESTS SUCCESSFUL\n", test_count);
+
+	int		*p = NULL;
+	char	*format = "{%.5p}\n";
+	printf(format, p);
+	ft_printf(format, p);
 	return (0);
 }

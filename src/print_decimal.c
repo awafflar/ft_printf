@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 14:31:43 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/02 20:12:38 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/03 16:54:53 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ static void		print_zero(t_buffer *buff, t_fmt *fmt, size_t size)
 	n_zero = (fmt->precision > size) ? fmt->precision - size : 0;
 	width = (fmt->width <= combined_size + n_zero) ?
 				0 : fmt->width - combined_size - n_zero;
+	if (fmt->flags & F_SPACE && fmt->flags & F_ZERO)
+		width--;
 	if (fmt->flags & F_ZERO)
 		buff_addnchar(buff, '0', width);
 	buff_addnchar(buff, '0', n_zero);

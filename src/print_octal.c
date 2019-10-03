@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_decimal.c                                    :+:      :+:    :+:   */
+/*   print_octal  .c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 14:31:43 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/03 11:20:27 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/03 16:21:48 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,17 @@ static void		print_padding(t_buffer *buff, t_fmt *fmt, size_t size, char **s)
 	else
 		width = (fmt->width <= combined_size + n_zero) ? 0 :
 			fmt->width - combined_size - n_zero;
-	if (fmt->flags & F_PRECI && fmt->precision == 0 && **s == '0' && width > 0)
-		width++;
 	buff_addnchar(buff, ' ', width);
 }
 
+static void		print_initial_zero(t_buffer *buff, t_fmt *fmt, char *str)
+{
+	if (fmt->flags & F_SHARP && *str != '0')
+		buff_addchar(buff, '0');
+	else if (fmt->flags & F_SHARP && fmt->flags & F_PRECI &&
+				fmt->precision == 0 && *str == '0')
+		buff_addchar(buff, '0');
+}
 static void		print_zero(t_buffer *buff, t_fmt *fmt, size_t size, char *str)
 {
 	size_t		n_zero;
@@ -47,8 +53,7 @@ static void		print_zero(t_buffer *buff, t_fmt *fmt, size_t size, char *str)
 				0 : fmt->width - combined_size - n_zero;
 	if (fmt->flags & F_ZERO && !(fmt->flags & F_SHARP))
 		buff_addnchar(buff, '0', width);
-	if (fmt->flags & F_SHARP && *str != '0')
-		buff_addchar(buff, '0');;
+	print_initial_zero(buff, fmt, str);
 	if (fmt->flags & F_ZERO && fmt->flags & F_SHARP)
 		buff_addnchar(buff, '0', width);
 	buff_addnchar(buff, '0', n_zero);
@@ -62,7 +67,8 @@ void			print_octal(t_buffer *buff, t_fmt *fmt, t_args *args)
 	if (fmt->flags & F_PRECI && fmt->flags & F_ZERO)
 		fmt->flags &= ~F_ZERO;
 	str = get_str_from_oux_lenght(fmt, args, 8);
-	size = ft_strlen(str);
+	size = (fmt->flags & F_PRECI && fmt->precision == 0 && *str == '0') ?
+			0 : ft_strlen(str);
 	if (fmt->width != 0 && !(fmt->flags & F_MINUS))
 		print_padding(buff, fmt, size, &str);
 	print_zero(buff, fmt, size, str);

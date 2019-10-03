@@ -6,27 +6,27 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 14:32:05 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/03 11:03:05 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/03 13:53:23 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "ft_printf_core.h"
 
-static void		(*g_fun[8])(t_buffer *, t_fmt *, t_args *) =
+static void		(*g_fun[10])(t_buffer *, t_fmt *, t_args *) =
 {
-	print_modulo, print_str, print_decimal, print_decimal,
-	print_octal, print_unsigned, print_hexa, print_hexa
+	print_modulo, print_char,  print_str, print_pointer,  print_decimal,
+	print_decimal, print_octal, print_unsigned, print_hexa, print_hexa
 };
 
 static int		printf_switch(t_buffer *buff, t_fmt *fmt, const char *format,
 					t_args *args)
 {
-	static char	flags[8] = "%sdiouxX";
+	static char	flags[10] = "%cspdiouxX";
 	int			i;
 
 	i = -1;
-	while (++i < 8)
+	while (++i < 10)
 	{
 		if (*format == 'X')
 			fmt->uppercase = 1;
