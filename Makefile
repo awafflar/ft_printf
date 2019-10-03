@@ -6,7 +6,7 @@
 #    By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/18 09:38:44 by awafflar          #+#    #+#              #
-#    Updated: 2019/10/01 15:29:56 by awafflar         ###   ########.fr        #
+#    Updated: 2019/10/03 11:01:48 by awafflar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,9 @@ SRC =	ft_printf.c 			\
 		print_decimal.c			\
 		print_hexa.c			\
 		print_modulo.c			\
+		print_octal.c			\
 		print_string.c			\
+		print_unsigned.c		\
 		utils.c					\
 		get_args_misc.c			\
 		get_args_signed.c		\

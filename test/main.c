@@ -313,7 +313,11 @@ int     int_test(int test_count)
 		"%hd",
 		"%ld",
 		"%lld",
-        NULL
+		"%#d",
+		"%# d",
+		"%#0-3.2d",
+        "%#0+- 10.2d",
+       NULL
     };
     int    value[] =
     {
@@ -357,6 +361,221 @@ int     int_test(int test_count)
     return (test_count);
 }
 
+int     unsigned_test(int test_count)
+{
+    int     ft_printf_ret = 0;
+    int     printf_ret = 0;
+
+    char    ft_printf_str[50];
+    char    printf_str[50];
+
+    char    *format[] =
+    {
+        "%u",
+        "%.u",
+        "%3u",
+        "%3.u",
+        "%3.2u",
+        "%-u",
+        "%-.u",
+        "%-3u",
+        "%-3.2u",
+        "%0u",
+        "%0.u",
+        "%03u",
+        "%03.u",
+        "%03.2u",
+        "%0-u",
+        "%0-.u",
+        "%0-3u",
+        "%0-3.u",
+        "%0-3.2u",
+        "%+u",
+        "%+.u",
+        "%+3u",
+        "%+3.u",
+        "%+3.2u",
+        "%+-u",
+        "%+-.u",
+        "%+-3u",
+        "%+-3.u",
+        "%+-3.2u",
+        "%+0u",
+        "%+0.u",
+        "%+03u",
+        "%+03.u",
+        "%+03.2u",
+        "%+0-u",
+        "%+0-3u",
+        "%+0-3.u",
+        "%+0-3.2u",
+		"% u",
+		"% 4u",
+		"% 4.2u",
+		"% +4.2u",
+		"% 0+4.2u",
+		"% 0+-4.2u",
+		"% #0+-4.2u",
+		"%hhu",
+		"%hu",
+		"%lu",
+		"%llu",
+ 		"%#u",
+		"%# u",
+		"%#0-3.2u",
+        "%#0+- 10.2u",
+		NULL
+    };
+    int    value[] =
+    {
+        0,
+        1,
+        5,
+        9,
+        10,
+        42,
+        99,
+        100,
+        123456,
+        987654,
+        -1,
+        -5,
+        -9,
+        -10,
+        -42,
+        -99,
+        -100,
+        -123456,
+        -987654
+    };
+
+    for (int i = 0; format[i] ; i++)
+    {
+        for (int j = 0; j < 18; j++)
+        {
+            test_count++;
+			printf_ret = snprintf(printf_str, 50, format[i], value[j]);
+			ft_printf_ret = ft_snprintf(ft_printf_str, 50, format[i], value[j]);
+            if (printf_ret != ft_printf_ret || strcmp(printf_str, ft_printf_str))
+            {
+                printf("Error Test %d : printf(%s, %d)\n", test_count, format[i], value[j]);
+                printf("Sortie printf    : \"%s\" (%d)\n", printf_str, printf_ret);
+                printf("Sortie ft_printf : \"%s\" (%d)\n", ft_printf_str, ft_printf_ret);
+                return (-1);
+            }
+        }
+    }
+    return (test_count);
+}
+
+int     octal_test(int test_count)
+{
+    int     ft_printf_ret = 0;
+    int     printf_ret = 0;
+
+    char    ft_printf_str[50];
+    char    printf_str[50];
+
+    char    *format[] =
+    {
+        "%o",
+        "%.o",
+        "%3o",
+        "%3.o",
+        "%3.2o",
+        "%-o",
+        "%-.o",
+        "%-3o",
+        "%-3.2o",
+        "%0o",
+        "%0.o",
+        "%03o",
+        "%03.o",
+        "%03.2o",
+        "%0-o",
+        "%0-.o",
+        "%0-3o",
+        "%0-3.o",
+        "%0-3.2o",
+        "%+o",
+        "%+.o",
+        "%+3o",
+        "%+3.o",
+        "%+3.2o",
+        "%+-o",
+        "%+-.o",
+        "%+-3o",
+        "%+-3.o",
+        "%+-3.2o",
+        "%+0o",
+        "%+0.o",
+        "%+03o",
+        "%+03.o",
+        "%+03.2o",
+        "%+0-o",
+        "%+0-3o",
+        "%+0-3.o",
+        "%+0-3.2o",
+		"% o",
+		"% 4o",
+		"% 4.2o",
+		"% +4.2o",
+		"% 0+4.2o",
+		"% 0+-4.2o",
+		"% #0+-4.2o",
+		"%hho",
+		"%ho",
+		"%lo",
+		"%llo",
+		"%#o",
+		"%# o",
+		"%#0-3.2o",
+        "%#0+- 10.2o",
+		NULL
+    };
+    int    value[] =
+    {
+        0,
+        1,
+        5,
+        9,
+        10,
+        42,
+        99,
+        100,
+        123456,
+        987654,
+        -1,
+        -5,
+        -9,
+        -10,
+        -42,
+        -99,
+        -100,
+        -123456,
+        -987654
+    };
+
+    for (int i = 0; format[i] ; i++)
+    {
+        for (int j = 0; j < 18; j++)
+        {
+            test_count++;
+			printf_ret = snprintf(printf_str, 50, format[i], value[j]);
+			ft_printf_ret = ft_snprintf(ft_printf_str, 50, format[i], value[j]);
+            if (printf_ret != ft_printf_ret || strcmp(printf_str, ft_printf_str))
+            {
+                printf("Error Test %d : printf(%s, %d)\n", test_count, format[i], value[j]);
+                printf("Sortie printf    : \"%s\" (%d)\n", printf_str, printf_ret);
+                printf("Sortie ft_printf : \"%s\" (%d)\n", ft_printf_str, ft_printf_ret);
+                return (-1);
+            }
+        }
+    }
+    return (test_count);
+}
+
+
 int main()
 {
     int     test_count = 0;
@@ -364,12 +583,23 @@ int main()
     test_count = string_test(test_count);
     if (test_count == -1)
         return (-1);
+	printf("String tests OK\n");
     test_count = int_test(test_count);
     if (test_count == -1)
         return (-1);
+	printf("Int tests OK\n");
 	test_count = hexa_test(test_count);
 	if (test_count == -1)
 		return (-1);
+	printf("Hexa tests OK\n");
+	test_count = unsigned_test(test_count);
+	if (test_count == -1)
+		return (-1);
+	printf("Unsigned tests OK\n");
+	test_count = octal_test(test_count);
+	if (test_count == -1)
+		return (-1);
+	printf("Octal tests OK\n");
 	printf("%d TESTS SUCCESSFUL\n", test_count);
 	return (0);
 }

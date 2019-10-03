@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 12:14:11 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/02 17:41:10 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/03 11:02:16 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ void				print_modulo(t_buffer *buff, t_fmt *fmt, t_args *args);
 void				print_str(t_buffer *buff, t_fmt *fmt, t_args *args);
 void				print_decimal(t_buffer *buff, t_fmt *fmt, t_args *args);
 void				print_hexa(t_buffer *buff, t_fmt *fmt, t_args *args);
+void				print_unsigned(t_buffer *buff, t_fmt *fmt, t_args *args);
+void				print_octal(t_buffer *buff, t_fmt *fmt, t_args *args);
 
 size_t				ft_strlen(const char *s);
 int					ft_isdigit(char c);
@@ -129,7 +131,8 @@ double				va_getarg_double(va_list ap, int argn);
 void				ft_printf__(t_buffer *buff, const char *format,
 						va_list ap);
 
-char				*get_str_from_oux_lenght(t_fmt *fmt, t_args *args);
+char				*get_str_from_oux_lenght(t_fmt *fmt, t_args *args,
+						int base);
 char				*get_str_from_di_lenght(t_fmt *fmt, t_args *args);
 
 #endif
