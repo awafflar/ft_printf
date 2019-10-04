@@ -771,5 +771,7 @@ int main()
 
 	ft_printf("%b\n", 8);
 	ft_printf("%#b\n", 8);
+	printf("%.2f\n", 3.);
+	printf("%#.2f\n", 3.);
 	return (0);
 }

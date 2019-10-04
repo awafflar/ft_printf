@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 12:14:11 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/04 08:11:57 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/04 10:38:14 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void				print_unsigned(t_buffer *buff, t_fmt *fmt, t_args *args);
 void				print_octal(t_buffer *buff, t_fmt *fmt, t_args *args);
 void				print_pointer(t_buffer *buff, t_fmt *fmt, t_args *args);
 void				print_binary(t_buffer *buff, t_fmt *fmt, t_args *args);
+void				print_n(t_buffer *buff, t_fmt *fmt, t_args *args);
 
 size_t				ft_strlen(const char *s);
 int					ft_isdigit(char c);
@@ -100,6 +101,12 @@ char				*di_short_tostring(t_args *args);
 char				*di_int_tostring(t_args *args);
 char				*di_long_tostring(t_args *args);
 char				*di_longlong_tostring(t_args *args);
+
+void				n_char_ptr(t_buffer *buff, t_args *args);
+void				n_short_ptr(t_buffer *buff, t_args *args);
+void				n_int_ptr(t_buffer *buff, t_args *args);
+void				n_long_ptr(t_buffer *buff, t_args *args);
+void				n_longlong_ptr(t_buffer *buff, t_args *args);
 
 void				buff_init(t_buffer *buff, t_bufftype type, char *str,
 						size_t size);

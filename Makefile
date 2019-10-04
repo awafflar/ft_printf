@@ -6,7 +6,7 @@
 #    By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/18 09:38:44 by awafflar          #+#    #+#              #
-#    Updated: 2019/10/04 08:12:23 by awafflar         ###   ########.fr        #
+#    Updated: 2019/10/04 10:35:35 by awafflar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC =	ft_printf.c 			\
 		print_decimal.c			\
 		print_hexa.c			\
 		print_modulo.c			\
+		print_n.c				\
 		print_octal.c			\
 		print_pointer.c			\
 		print_string.c			\
@@ -40,7 +41,8 @@ SRC =	ft_printf.c 			\
 		get_args_signed.c		\
 		get_args_signedptr.c	\
 		get_args_unsigned.c		\
-		oux_tostring.c
+		oux_tostring.c			\
+		total_to_ptr.c
 
 OBJ = $(SRC:%.c=obj/%.o)
 
