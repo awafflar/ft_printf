@@ -6,7 +6,7 @@
 #    By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/18 09:38:44 by awafflar          #+#    #+#              #
-#    Updated: 2019/10/03 13:52:10 by awafflar         ###   ########.fr        #
+#    Updated: 2019/10/04 08:12:23 by awafflar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC =	ft_printf.c 			\
 		ft_vprintf.c			\
 		parse.c					\
 		printf_core.c			\
+		print_binary.c			\
 		print_char.c			\
 		print_decimal.c			\
 		print_hexa.c			\

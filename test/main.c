@@ -769,9 +769,7 @@ int main()
 	printf("Pointer tests OK\n");
 	printf("%d TESTS SUCCESSFUL\n", test_count);
 
-	int		*p = NULL;
-	char	*format = "{%.5p}\n";
-	printf(format, p);
-	ft_printf(format, p);
+	ft_printf("%b\n", 8);
+	ft_printf("%#b\n", 8);
 	return (0);
 }
