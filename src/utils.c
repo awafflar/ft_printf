@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 14:20:27 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/02 16:43:50 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/06 15:34:25 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ size_t		ft_strlen(const char *s)
 	s1 = s;
 	while (*s1)
 		s1++;
-	return (s1 - s);
+	return ((size_t)(s1 - s));
 }
 
 int			ft_isdigit(char c)
@@ -50,7 +50,7 @@ char		*ft_lltostr(long long n)
 	{
 		while (n)
 		{
-			*--ret = '0' - (n % 10);
+			*--ret = (char)('0' - (n % 10));
 			n /= 10;
 		}
 		*--ret = '-';
@@ -58,13 +58,14 @@ char		*ft_lltostr(long long n)
 	else
 		while (n)
 		{
-			*--ret = '0' + n % 10;
+			*--ret = (char)('0' + n % 10);
 			n /= 10;
 		}
 	return (ret);
 }
 
-char		*ft_ulltostr_base(unsigned long long n, int base, char *digits)
+char		*ft_ulltostr_base(unsigned long long n, unsigned int base, 
+				char *digits)
 {
 	static char		buff[65];
 	char			*ret;

@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 14:31:00 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/03 13:40:22 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/06 17:20:56 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,18 @@ double				va_getarg_double(va_list ap, int argn)
 	va_copy(ap_tmp, ap);
 	while (argn--)
 		ret = va_arg(ap_tmp, double);
+	va_end(ap_tmp);
+	return (ret);
+}
+
+long double			va_getarg_long_double(va_list ap, int argn)
+{
+	va_list			ap_tmp;
+	long double		ret;
+
+	va_copy(ap_tmp, ap);
+	while (argn--)
+		ret = va_arg(ap_tmp, long double);
 	va_end(ap_tmp);
 	return (ret);
 }

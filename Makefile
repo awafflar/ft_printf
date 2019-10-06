@@ -6,13 +6,13 @@
 #    By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/18 09:38:44 by awafflar          #+#    #+#              #
-#    Updated: 2019/10/04 10:35:35 by awafflar         ###   ########.fr        #
+#    Updated: 2019/10/06 17:22:10 by awafflar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Wconversion
 
 CC = gcc $(FLAGS)
 
@@ -23,12 +23,14 @@ SRC =	ft_printf.c 			\
 		buffer_add.c			\
 		conversion.c			\
 		di_tostring.c			\
+		ft_dtoa.c				\
 		ft_vprintf.c			\
 		parse.c					\
 		printf_core.c			\
 		print_binary.c			\
 		print_char.c			\
 		print_decimal.c			\
+		print_float.c			\
 		print_hexa.c			\
 		print_modulo.c			\
 		print_n.c				\

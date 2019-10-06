@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_modulo.c                                     :+:      :+:    :+:   */
+/*   fields.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/30 14:31:50 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/06 18:19:16 by awafflar         ###   ########.fr       */
+/*   Created: 2019/10/06 18:09:28 by awafflar          #+#    #+#             */
+/*   Updated: 2019/10/06 18:28:15 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_core.h"
 
-void			print_modulo(t_buffer *buff, t_fmt *fmt, t_args *args)
+void		fields_init(t_fields *f)
 {
-	t_fields	fields;
-
-	(void)args;
-	fields_init(&fields);
-	fields.value = "%";
-	print__(buff, fmt, fields);
+	f->prefix = "";
+	f->is_precision_padding = 1;
+	f->free = 0;
+	f->has_limit = 0;
 }

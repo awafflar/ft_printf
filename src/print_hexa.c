@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 16:06:02 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/03 10:50:59 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/06 13:55:20 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static void		print_sharp(t_buffer *buff, t_fmt *fmt)
 {
-	if (fmt->uppercase == 1)
-		buff_addnstr(buff, "0X", 2);
-	else
-		buff_addnstr(buff, "0x", 2);
+	char		*prefix;
+
+	prefix = (fmt->flags & F_UPPER ? "0X" : "0x");
+	buff_addnstr(buff, prefix, 2);
 }
 
 static void		print_padding(t_buffer *buff, t_fmt *fmt, size_t size, char **s)
@@ -59,6 +59,12 @@ static void		print_zero(t_buffer *buff, t_fmt *fmt, size_t size, char *str)
 	if (fmt->flags & F_ZERO && fmt->flags & F_SHARP)
 		buff_addnchar(buff, '0', width);
 	buff_addnchar(buff, '0', n_zero);
+}
+
+void				print_hexa_upper(t_buffer *buff, t_fmt *fmt, t_args *args)
+{
+	fmt->flags |= F_UPPER;
+	print_hexa(buff, fmt, args);
 }
 
 void			print_hexa(t_buffer *buff, t_fmt *fmt, t_args *args)

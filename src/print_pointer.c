@@ -33,10 +33,8 @@ static void		print_padding(t_buffer *buff, t_fmt *fmt, size_t size, char **s)
 static void		print_zero(t_buffer *buff, t_fmt *fmt, size_t size)
 {
 	size_t		n_zero;
-	size_t		width;
 
 	n_zero = (fmt->precision > size) ? fmt->precision - size : 0;
-	width = (fmt->width <= size + n_zero) ? 0 : fmt->width - size - n_zero;
 	buff_addnchar(buff, '0', n_zero);
 }
 
