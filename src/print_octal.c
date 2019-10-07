@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_octal  .c                                    :+:      :+:    :+:   */
+/*   print_octal.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 14:31:43 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/03 16:21:48 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/07 16:00:15 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@ void			print_octal(t_buffer *buff, t_fmt *fmt, t_args *args)
 {
 	t_fields    field;
 
-	fields_init(&field)
-	field.prefix = "0";
+	fields_init(&field);
 	if (fmt->flags & F_PRECI && fmt->flags & F_ZERO)
 		fmt->flags &= ~F_ZERO;
 	field.value = get_str_from_oux_lenght(fmt, args, 8);
+	if (fmt->flags & F_SHARP && field.value[0] != '0')
+		field.prefix = "0";
 	print__(buff, fmt, &field);
 }

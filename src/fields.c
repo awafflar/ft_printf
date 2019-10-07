@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 18:09:28 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/06 18:28:15 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/07 13:58:43 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void		fields_init(t_fields *f)
 {
 	f->prefix = "";
-	f->is_precision_padding = 1;
+	f->use_precision = ADD_ZERO;
 	f->free = 0;
-	f->has_limit = 0;
 }

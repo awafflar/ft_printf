@@ -6,19 +6,20 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 15:27:36 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/06 18:02:29 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/07 15:51:11 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_core.h"
 
-static char		*(*g_oux_tostring[6])(t_args *, unsigned int, char *) =
+static char		*(*g_oux_tostring[6])(t_args *, t_fmt *fmt, unsigned int,
+				char *) =
 {
 	oux_uint_tostring, oux_uchar_tostring, oux_ushort_tostring,
 	oux_ulong_tostring, oux_ulonglong_tostring, oux_uint_tostring
 };
 
-static char		*(*g_di_tostring[6])(t_args *) =
+static char		*(*g_di_tostring[6])(t_args *, t_fmt *) =
 {
 	di_int_tostring, di_char_tostring, di_short_tostring, di_long_tostring,
 	di_longlong_tostring, di_int_tostring
@@ -30,12 +31,12 @@ char			*get_str_from_oux_lenght(t_fmt *fmt, t_args *args,
 	char		*digits;
 
 	digits = (fmt->flags & F_UPPER ? "0123456789ABCDEF" : "0123456789abcdef");
-	return (g_oux_tostring[(int)fmt->lenght](args, base, digits));
+	return (g_oux_tostring[(int)fmt->lenght](args, fmt, base, digits));
 }
 
 char			*get_str_from_di_lenght(t_fmt *fmt, t_args *args)
 {
-	return (g_di_tostring[(int)fmt->lenght](args));
+	return (g_di_tostring[(int)fmt->lenght](args, fmt));
 }
 
 char			*get_str_from_pointer(t_args *args)
@@ -48,16 +49,22 @@ char			*get_str_from_pointer(t_args *args)
 	return (ft_ulltostr_base((unsigned long long)ptr, 16, "0123456789abcdef"));
 }
 
-char			*get_str_from_f_lenght(t_fmt *fmt, t_args *args)
+void			get_str_from_f_lenght(t_fmt *fmt, t_args *args, t_fields *f)
 {
-	double		d
+	double		d;
 	long double	ld;
+	
 	if (fmt->lenght == BIGL)
+	{
 		ld = va_getarg_long_double(args->ap, args->current++);
+		if (ldouble_exception(ld, f))
+			return ;
+	}
 	else
 	{
 		d = va_getarg_double(args->ap, args->current++);
-		if (d 
+		if (double_exception(d, f))
+			return ;
 	}
 	if (d < 0)
 	{
@@ -65,5 +72,5 @@ char			*get_str_from_f_lenght(t_fmt *fmt, t_args *args)
 		d = -d;
 	}
 	fmt->precision = (fmt->flags & F_PRECI ? fmt->precision : 6);
-	return (ft_dtoa(d, fmt->precision));
+	f->value = ft_dtoa(d, fmt->precision);
 }

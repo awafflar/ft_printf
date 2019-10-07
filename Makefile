@@ -6,7 +6,7 @@
 #    By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/18 09:38:44 by awafflar          #+#    #+#              #
-#    Updated: 2019/10/06 17:22:10 by awafflar         ###   ########.fr        #
+#    Updated: 2019/10/07 15:10:53 by awafflar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,12 @@ SRC =	ft_printf.c 			\
 		buffer_add.c			\
 		conversion.c			\
 		di_tostring.c			\
+		double_exception.c		\
+		fields.c				\
 		ft_dtoa.c				\
 		ft_vprintf.c			\
 		parse.c					\
+		print.c					\
 		printf_core.c			\
 		print_binary.c			\
 		print_char.c			\

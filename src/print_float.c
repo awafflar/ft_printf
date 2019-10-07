@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 16:52:58 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/06 17:13:16 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/07 15:08:46 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,12 @@ void			print_float(t_buffer *buff, t_fmt *fmt, t_args *args)
 {
 	char		*str;
 	size_t		size;
+	t_fields	fields;
 
+	str = "";
 	if (fmt->flags & F_PRECI && fmt->flags & F_ZERO)
 		fmt->flags &= ~F_ZERO;
-	str = get_str_from_f_lenght(fmt, args);
+	get_str_from_f_lenght(fmt, args, &fields);
 	if (fmt->flags & F_PLUS && *str != '-')
 		fmt->flags |= F_SIGN_P;
 	if (*str == '-')

@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 12:14:11 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/06 18:27:56 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/07 16:16:23 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,15 @@
 # define F_SHARP	16
 # define F_PRECI	32
 # define F_UPPER	64
-# define F_SIGN_P   128
-# define F_SIGN_M   256
+# define F_SIGN_P	128
+# define F_SIGN_M	256
+
+typedef enum		e_precision
+{
+	ADD_ZERO,
+	CUT_STRING,
+	NONE
+}					t_precision;
 
 typedef enum		e_bufftype
 {
@@ -72,11 +79,18 @@ typedef struct		s_args
 typedef struct		s_fields
 {
 	char			*prefix;
-	char			is_precision_padding;
+	t_precision		use_precision;
 	char			*value;
 	char			free;
-	char			has_limit;
 }					t_fields;
+
+typedef struct		s_fsize
+{
+	size_t			wop;
+	size_t			val;
+	size_t			n_zero;
+	size_t			padd;
+}					t_fsize;
 
 void				parse_core(t_fmt *fmt, const char **format, t_args *args);
 
@@ -97,6 +111,8 @@ void				print_binary_upper(t_buffer *buff, t_fmt *fmt,
 void				print_n(t_buffer *buff, t_fmt *fmt, t_args *args);
 void				print_float(t_buffer *buff, t_fmt *fmt, t_args *args);
 
+void				print__(t_buffer *buff, t_fmt *fmt, t_fields *fields);
+
 size_t				ft_strlen(const char *s);
 int					ft_isdigit(char c);
 int					ft_atoi_lite(const char **str);
@@ -106,22 +122,22 @@ char				*ft_ulltostr_base(unsigned long long n, unsigned int base,
 
 char				*ft_dtoa(long double d, size_t precision);
 
-char				*oux_uchar_tostring(t_args *args, unsigned int base,
-						char *digits);
-char				*oux_ushort_tostring(t_args *args, unsigned int base,
-						char *digits);
-char				*oux_uint_tostring(t_args *args, unsigned int base,
-						char *digits);
-char				*oux_ulong_tostring(t_args *args, unsigned int base,
-						char *digits);
-char				*oux_ulonglong_tostring(t_args *args, unsigned int base, 
-						char *digits);
+char				*oux_uchar_tostring(t_args *args, t_fmt *fmt,
+						unsigned int base, char *digits);
+char				*oux_ushort_tostring(t_args *args, t_fmt *fmt,
+						unsigned int base, char *digits);
+char				*oux_uint_tostring(t_args *args, t_fmt *fmt,
+						unsigned int base, char *digits);
+char				*oux_ulong_tostring(t_args *args, t_fmt *fmt,
+						unsigned int base, char *digits);
+char				*oux_ulonglong_tostring(t_args *args, t_fmt *fmt,
+						unsigned int base, char *digits);
 
-char				*di_char_tostring(t_args *args);
-char				*di_short_tostring(t_args *args);
-char				*di_int_tostring(t_args *args);
-char				*di_long_tostring(t_args *args);
-char				*di_longlong_tostring(t_args *args);
+char				*di_char_tostring(t_args *args, t_fmt *fmt);
+char				*di_short_tostring(t_args *args, t_fmt *fmt);
+char				*di_int_tostring(t_args *args, t_fmt *fmt);
+char				*di_long_tostring(t_args *args, t_fmt *fmt);
+char				*di_longlong_tostring(t_args *args, t_fmt *fmt);
 
 void				n_char_ptr(t_buffer *buff, t_args *args);
 void				n_short_ptr(t_buffer *buff, t_args *args);
@@ -167,6 +183,10 @@ char				*get_str_from_oux_lenght(t_fmt *fmt, t_args *args,
 						unsigned int base);
 char				*get_str_from_di_lenght(t_fmt *fmt, t_args *args);
 char				*get_str_from_pointer(t_args *args);
-char				*get_str_from_f_lenght(t_fmt *fmt, t_args *args);
+void				get_str_from_f_lenght(t_fmt *fmt, t_args *args, 
+						t_fields *fields);
+
+int					double_exception(double d, t_fields *fields);
+int					ldouble_exception(long double d, t_fields *fields);
 
 #endif

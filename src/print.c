@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 18:03:03 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/06 18:08:34 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/07 16:15:09 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,39 @@
 
 #include "ft_printf_core.h"
 
-void		print__(t_buffer *buff, t_fields *fields)
+void			print__(t_buffer *buff, t_fmt *fmt, t_fields *fields)
 {
-	buff_addnchar(buff, fields->padd_char, fields->pre_padding_size);
+	t_fsize		fsize;
+	char		padd_char;
+
+	fsize.val = ft_strlen(fields->value);
+	fsize.n_zero = 0;
+	padd_char = (fmt->flags & F_ZERO ? '0' : ' ');
+	if (fmt->flags & F_PRECI)
+	{
+		if (fields->use_precision == CUT_STRING)
+			fsize.val = (fsize.val > fmt->precision ? fmt->precision :
+				fsize.val);
+		else if (fields->use_precision == ADD_ZERO &&
+				fmt->precision > fsize.val)
+			fsize.n_zero = fmt->precision - fsize.val;
+	}
+	if (fields->prefix[0] == '0' && fields->prefix[1] == '\0' &&
+			fsize.n_zero != 0)
+		fsize.n_zero--;
+	fsize.wop = fsize.val + fsize.n_zero + ft_strlen(fields->prefix);
+	fsize.padd = (fmt->width > fsize.wop ? fmt->width - fsize.wop : 0);
+	if ((!(fmt->flags & F_ZERO) || fields->prefix[0] == '\0') && 
+			!(fmt->flags & F_MINUS))
+		buff_addnchar(buff, padd_char, fsize.padd);
 	buff_addstr(buff, fields->prefix);
-	buff_addnchar(buff, '0', fields->precision_padding);
-	if (fields->string_limit)
-		buff_addnstr(buff, fields->value, fields->limit);
-	else
-		buff_addstr(buff, fields->value);
-	buff_addnchar(buff, fields->padd_char, fields->post_padding);
+	if (fmt->flags & F_ZERO && fields->prefix[0] != '\0' && 
+			!(fmt->flags & F_MINUS))
+		buff_addnchar(buff, padd_char, fsize.padd);
+	buff_addnchar(buff, '0', fsize.n_zero);
+	buff_addnstr(buff, fields->value, fsize.val);
+	if (fmt->flags & F_MINUS)
+		buff_addnchar(buff, padd_char, fsize.padd);
 	if (fields->free)
 		free(fields->value);
 }
