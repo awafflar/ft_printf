@@ -14,14 +14,12 @@
 
 void		print_char(t_buffer *buff, t_fmt *fmt, t_args *args)
 {
-	char	c;
-	size_t	padding;
+    t_fields    field;
+    char        tmp[2];
 
-	padding = (fmt->width > 0) ? fmt->width - 1 : 0;
-	c = (char)va_getarg_uint(args->ap, args->current++);
-	if (!(fmt->flags & F_MINUS))
-		buff_addnchar(buff, ' ', padding);
-	buff_addchar(buff, c);
-	if (fmt->flags & F_MINUS)
-		buff_addnchar(buff, ' ', padding);
+    fields_init(&field);
+	tmp[0] = (char)va_getarg_uint(args->ap, args->current++);
+	tmp[1] = '\0';
+	field->value = tmp;
+	print__(buff, fmt, &field);
 }
