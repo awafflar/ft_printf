@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 12:14:11 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/07 16:16:23 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/07 18:45:19 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,8 @@ char				*ft_lltostr(long long n);
 char				*ft_ulltostr_base(unsigned long long n, unsigned int base,
 						char *digits);
 
-char				*ft_dtoa(long double d, size_t precision);
+char				*ft_ldtoa(long double d, size_t precision, int sharp);
+char				*ft_dtoa(double d, size_t precision, int sharp);
 
 char				*oux_uchar_tostring(t_args *args, t_fmt *fmt,
 						unsigned int base, char *digits);
@@ -139,11 +140,16 @@ char				*di_int_tostring(t_args *args, t_fmt *fmt);
 char				*di_long_tostring(t_args *args, t_fmt *fmt);
 char				*di_longlong_tostring(t_args *args, t_fmt *fmt);
 
-void				n_char_ptr(t_buffer *buff, t_args *args);
-void				n_short_ptr(t_buffer *buff, t_args *args);
-void				n_int_ptr(t_buffer *buff, t_args *args);
-void				n_long_ptr(t_buffer *buff, t_args *args);
-void				n_longlong_ptr(t_buffer *buff, t_args *args);
+void				f_double_tostring(t_args *args, t_fmt *fmt,
+						t_fields *fields);
+void				f_ldouble_tostring(t_args *args, t_fmt *fmt,
+						t_fields *fields);
+
+void				n_char_ptr(t_buffer *buff, t_fmt *fmt, t_args *args);
+void				n_short_ptr(t_buffer *buff, t_fmt *fmt, t_args *args);
+void				n_int_ptr(t_buffer *buff, t_fmt *fmt, t_args *args);
+void				n_long_ptr(t_buffer *buff, t_fmt *fmt, t_args *args);
+void				n_longlong_ptr(t_buffer *buff, t_fmt *fmt, t_args *args);
 
 void				buff_init(t_buffer *buff, t_bufftype type, char *str,
 						size_t size);
@@ -182,7 +188,6 @@ void				ft_printf__(t_buffer *buff, const char *format,
 char				*get_str_from_oux_lenght(t_fmt *fmt, t_args *args,
 						unsigned int base);
 char				*get_str_from_di_lenght(t_fmt *fmt, t_args *args);
-char				*get_str_from_pointer(t_args *args);
 void				get_str_from_f_lenght(t_fmt *fmt, t_args *args, 
 						t_fields *fields);
 

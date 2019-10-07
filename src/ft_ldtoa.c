@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dtoa.c                                          :+:      :+:    :+:   */
+/*   ft_ldtoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/05 16:13:20 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/07 19:58:01 by awafflar         ###   ########.fr       */
+/*   Created: 2019/10/07 18:26:02 by awafflar          #+#    #+#             */
+/*   Updated: 2019/10/07 18:27:05 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static int		ft_round(char *int_part, char *float_part)
 	return (1);
 }
 
-char			*ft_dtoa(double d, size_t precision, int sharp)
+char			*ft_ldtoa(long double d, size_t precision, int sharp)
 {
 	char		*int_part;
 	char		*float_part;
@@ -79,13 +79,13 @@ char			*ft_dtoa(double d, size_t precision, int sharp)
 	int_part = ft_ulltostr_base((unsigned long long)d, 10, "0123456789");
 	if (!(float_part = (char *)malloc(sizeof(char) * (precision + 1))))
 		return (NULL);
-	d -= (double)((unsigned long long)d);
+	d -= (long double)((unsigned long long)d);
 	i = 0;
 	while (i < precision)
 	{
 		d *= 10.;
 		float_part[i++] = (char)('0' + (char)d);
-		d -= (double)((unsigned long long)d);
+		d -= (long double)((unsigned long long)d);
 	}
 	float_part[i] = '\0';
 	d *= 10.;

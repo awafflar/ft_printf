@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 15:27:36 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/07 15:51:11 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/07 18:43:56 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,38 +39,11 @@ char			*get_str_from_di_lenght(t_fmt *fmt, t_args *args)
 	return (g_di_tostring[(int)fmt->lenght](args, fmt));
 }
 
-char			*get_str_from_pointer(t_args *args)
-{
-	void		*ptr;
-
-	ptr = va_getarg_ptr(args->ap, args->current++);
-	if (ptr == NULL)
-		return ("0");
-	return (ft_ulltostr_base((unsigned long long)ptr, 16, "0123456789abcdef"));
-}
-
 void			get_str_from_f_lenght(t_fmt *fmt, t_args *args, t_fields *f)
 {
-	double		d;
-	long double	ld;
-	
-	if (fmt->lenght == BIGL)
-	{
-		ld = va_getarg_long_double(args->ap, args->current++);
-		if (ldouble_exception(ld, f))
-			return ;
-	}
-	else
-	{
-		d = va_getarg_double(args->ap, args->current++);
-		if (double_exception(d, f))
-			return ;
-	}
-	if (d < 0)
-	{
-		fmt->flags |= F_SIGN_M;
-		d = -d;
-	}
 	fmt->precision = (fmt->flags & F_PRECI ? fmt->precision : 6);
-	f->value = ft_dtoa(d, fmt->precision);
+	if (fmt->lenght == BIGL)
+		f_ldouble_tostring(args, fmt, f);
+	else
+		f_double_tostring(args, fmt, f);
 }

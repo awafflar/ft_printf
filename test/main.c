@@ -764,6 +764,117 @@ int     pointer_test(int test_count)
     return (test_count);
 }
 
+int     float_test(int test_count)
+{
+    int     ft_printf_ret = 0;
+    int     printf_ret = 0;
+
+    char    ft_printf_str[50];
+    char    printf_str[50];
+
+    char    *format[] =
+    {
+        "%f",
+        "%.f",
+        "%3f",
+        "%3.f",
+        "%3.2f",
+        "%-f",
+        "%-.f",
+        "%-3f",
+        "%-3.2f",
+        "%0f",
+        "%0.f",
+        "%03f",
+        "%03.f",
+        "%03.2f",
+        "%0-f",
+        "%0-.f",
+        "%0-3f",
+        "%0-3.f",
+        "%0-3.2f",
+        "%+f",
+        "%+.f",
+        "%+3f",
+        "%+3.f",
+        "%+3.2f",
+        "%+-f",
+        "%+-.f",
+        "%+-3f",
+        "%+-3.f",
+        "%+-3.2f",
+        "%+0f",
+        "%+0.f",
+        "%+03f",
+        "%+03.f",
+        "%+03.2f",
+        "%+0-f",
+        "%+0-3f",
+        "%+0-3.f",
+        "%+0-3.2f",
+		"% f",
+		"% 4f",
+		"% 4.2f",
+		"% +4.2f",
+		"% 0+4.2f",
+		"% 0+-4.2f",
+		"% #0+-4.2f",
+		"%#f",
+		"%# f",
+		"%#0-3.2f",
+        "%#0+- 10.2f",
+		"%.100f",
+       NULL
+    };
+    double    value[] =
+    {
+        0.0,
+        1.0,
+        5.0,
+        9.99,
+		10.59,
+		10.55,
+        10.5,
+        42.42424242424242424242424242,
+        99.0,
+        100.0,
+        90.0,
+        -1.0,
+        -5.0,
+        -9.99,
+        -10.5,
+        -42.42424242424242424242424242,
+        -99.0,
+        -100.0,
+		-987654.0,
+		-87654.0,
+//		0.0 / 0.0,
+//		1.0 / 0.0,
+//		-1.0 / 0.0
+        };
+
+    for (int i = 0; format[i] ; i++)
+    {
+        for (int j = 0; j < 23; j++)
+        {
+            test_count++;
+			printf_ret = snprintf(printf_str, 50, format[i], value[j]);
+			ft_printf_ret = ft_snprintf(ft_printf_str, 50, format[i], value[j]);
+
+			if (printf_ret == -1)
+			printf_ret = ft_printf_ret;
+
+			if (printf_ret != ft_printf_ret || strcmp(printf_str, ft_printf_str))
+            {
+                printf("Error Test %d : printf(%s, %f)\n", test_count, format[i], value[j]);
+                printf("Sortie printf    : \"%s\" (%d)\n", printf_str, printf_ret);
+                printf("Sortie ft_printf : \"%s\" (%d)\n", ft_printf_str, ft_printf_ret);
+                return (-1);
+            }
+        }
+    }
+    return (test_count);
+}
 
 int main()
 {
@@ -795,15 +906,13 @@ int main()
 	printf("Char tests OK\n");
 /*	test_count = pointer_test(test_count);
 	if (test_count == -1)
-		return (-1);*/
-	printf("Pointer tests OK\n");
+		return (-1);
+	printf("Pointer tests OK\n");*/
+	test_count = float_test(test_count);
+	if (test_count == -1)
+		return (-1);
+	printf("Floats tests OK\n");
 	printf("%d TESTS SUCCESSFUL\n", test_count);
-
-
-	printf("%f\n", 0.0 / 0.0);
-	printf("%f\n", 1.0 / 0.0);
-	printf("%f\n", -1.0 / 0.0);
-	printf("% f\n", 1.0 / 0.0);
-
+	
 	return (0);
 }

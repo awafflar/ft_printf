@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 16:06:02 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/07 15:09:34 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/07 17:52:24 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ void			print_pointer(t_buffer *buff, t_fmt *fmt, t_args *args)
 	field.prefix = "0x";
 	if (fmt->flags & F_PRECI && fmt->flags & F_ZERO)
 		fmt->flags &= ~F_ZERO;
-	field.value = get_str_from_oux_lenght(fmt, args, 16);
+	field.value = oux_ulonglong_tostring(args, fmt, 16, "0123456789abcdef");
 	print__(buff, fmt, &field);
 }

@@ -6,7 +6,7 @@
 #    By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/18 09:38:44 by awafflar          #+#    #+#              #
-#    Updated: 2019/10/07 15:10:53 by awafflar         ###   ########.fr        #
+#    Updated: 2019/10/07 19:52:59 by awafflar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,10 @@ SRC =	ft_printf.c 			\
 		conversion.c			\
 		di_tostring.c			\
 		double_exception.c		\
+		f_tostring.c			\
 		fields.c				\
 		ft_dtoa.c				\
+		ft_ldtoa.c				\
 		ft_vprintf.c			\
 		parse.c					\
 		print.c					\
@@ -44,7 +46,6 @@ SRC =	ft_printf.c 			\
 		utils.c					\
 		get_args_misc.c			\
 		get_args_signed.c		\
-		get_args_signedptr.c	\
 		get_args_unsigned.c		\
 		oux_tostring.c			\
 		total_to_ptr.c
