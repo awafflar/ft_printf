@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 14:32:05 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/06 17:15:26 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/14 11:42:50 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static void		(*g_fun[14])(t_buffer *, t_fmt *, t_args *) =
 {
-	print_modulo, print_char,  print_str, print_pointer,  print_decimal,
+	print_modulo, print_char, print_str, print_pointer, print_decimal,
 	print_decimal, print_octal, print_unsigned, print_hexa, print_hexa_upper,
 	print_binary, print_binary_upper, print_n, print_float
 };

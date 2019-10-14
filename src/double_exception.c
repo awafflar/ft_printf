@@ -6,9 +6,10 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 14:57:38 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/07 20:01:53 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/14 11:25:36 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "ft_printf_core.h"
 
 int			double_exception(double d, t_fields *fields)

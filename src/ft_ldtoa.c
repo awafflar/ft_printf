@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 18:26:02 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/07 18:27:05 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/14 11:26:08 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char		*ft_strpcpy(char *dest, char *src)
 {
 	while ((*dest = *src++))
 		dest++;
-	return (dest); 
+	return (dest);
 }
 
 static char		*concat_double(char *int_part, char *float_part, int add_flag,
@@ -54,7 +54,7 @@ static int		ft_round(char *int_part, char *float_part)
 			return (0);
 		}
 		float_part[i] = '0';
-	}	
+	}
 	i = ft_strlen(int_part);
 	while (i--)
 	{

@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 16:06:02 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/07 17:52:24 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/14 11:36:50 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void			print_pointer(t_buffer *buff, t_fmt *fmt, t_args *args)
 {
-	t_fields    field;
+	t_fields	field;
 
 	fields_init(&field);
 	field.prefix = "0x";

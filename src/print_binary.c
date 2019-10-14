@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 16:06:02 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/07 15:05:58 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/14 11:26:55 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void			print_binary_upper(t_buffer *buff, t_fmt *fmt, t_args *args)
 
 void			print_binary(t_buffer *buff, t_fmt *fmt, t_args *args)
 {
-	t_fields    field;
+	t_fields	field;
 
 	fields_init(&field);
 	field.prefix = (fmt->flags & F_UPPER ? "0B" : "0b");

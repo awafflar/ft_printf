@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 10:32:12 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/07 17:39:18 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/14 11:42:33 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 void			n_char_ptr(t_buffer *buff, t_fmt *fmt, t_args *args)
 {
 	char		*ptr;
-	
+
 	if (fmt->arg_n != 0)
 		ptr = (char *)va_getarg_ptr(args->ap, fmt->arg_n);
 	else
@@ -28,7 +28,7 @@ void			n_char_ptr(t_buffer *buff, t_fmt *fmt, t_args *args)
 void			n_short_ptr(t_buffer *buff, t_fmt *fmt, t_args *args)
 {
 	short		*ptr;
-		
+
 	if (fmt->arg_n != 0)
 		ptr = (short *)va_getarg_ptr(args->ap, fmt->arg_n);
 	else
@@ -66,6 +66,5 @@ void			n_longlong_ptr(t_buffer *buff, t_fmt *fmt, t_args *args)
 		ptr = (long long *)va_getarg_ptr(args->ap, fmt->arg_n);
 	else
 		ptr = (long long *)va_getarg_ptr(args->ap, args->current++);
-
 	*ptr = (long long)buff->total;
 }

@@ -631,23 +631,41 @@ int     char_test(int test_count)
 		"% 4.2c",
         NULL
     };
+	int		value[]=
+	{
+		0,
+		10,
+		32,
+		43,
+		48,
+		57,
+		65,
+		90,
+		92,
+		97,
+		122,
+		126,
+};
 
     for (int i = 0; format[i] ; i++)
     {
-		test_count++;
-		printf_ret = snprintf(printf_str, 50, format[i], 'c');
-		ft_printf_ret = ft_snprintf(ft_printf_str, 50, format[i], 'c');
-
-		if (printf_ret == -1)
-		printf_ret = ft_printf_ret;
-
-
-        if (printf_ret != ft_printf_ret || strcmp(printf_str, ft_printf_str))
+	    for (int j = 0; j < 12; j++)
         {
-            printf("Error Test %d : printf(%s, \"%c\")\n", test_count, format[i], 'c');
-            printf("Sortie printf    : \"%s\" (%d)\n", printf_str, printf_ret);
-            printf("Sortie ft_printf : \"%s\" (%d)\n", ft_printf_str, ft_printf_ret);
-            return (-1);
+            test_count++;
+			printf_ret = snprintf(printf_str, 50, format[i], value[j]);
+			ft_printf_ret = ft_snprintf(ft_printf_str, 50, format[i], value[j]);
+        
+			if (printf_ret == -1)
+				printf_ret = ft_printf_ret;
+
+		
+			if (printf_ret != ft_printf_ret || strcmp(printf_str, ft_printf_str))
+            {
+                printf("Error Test %d : printf(%s, %d)\n", test_count, format[i], value[j]);
+                printf("Sortie printf    : \"%s\" (%d)\n", printf_str, printf_ret);
+                printf("Sortie ft_printf : \"%s\" (%d)\n", ft_printf_str, ft_printf_ret);
+                return (-1);
+            }
         }
     }
     return (test_count);
@@ -848,9 +866,6 @@ int     float_test(int test_count)
         -100.0,
 		-987654.0,
 		-87654.0,
-//		0.0 / 0.0,
-//		1.0 / 0.0,
-//		-1.0 / 0.0
         };
 
     for (int i = 0; format[i] ; i++)
@@ -904,15 +919,18 @@ int main()
 	if (test_count == -1)
 		return (-1);
 	printf("Char tests OK\n");
-/*	test_count = pointer_test(test_count);
+	test_count = pointer_test(test_count);
 	if (test_count == -1)
 		return (-1);
-	printf("Pointer tests OK\n");*/
+	printf("Pointer tests OK\n");
 	test_count = float_test(test_count);
 	if (test_count == -1)
 		return (-1);
 	printf("Floats tests OK\n");
 	printf("%d TESTS SUCCESSFUL\n", test_count);
 	
+	printf("================\tHANDTESTS\t================\n");
+	printf("%f %lf %Lf\n", 1.42, 1.42, 1.42l);
+	ft_printf("%f %lf %Lf\n", 1.42, 1.42, 1.42l);
 	return (0);
 }

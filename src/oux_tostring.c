@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 17:01:27 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/07 15:56:33 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/14 11:42:04 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ char			*oux_uchar_tostring(t_args *args, t_fmt *fmt, unsigned int base,
 					char *digits)
 {
 	unsigned char		n;
-
 
 	if (fmt->arg_n != 0)
 		n = (unsigned char)va_getarg_uint(args->ap, fmt->arg_n);
@@ -32,7 +31,6 @@ char			*oux_ushort_tostring(t_args *args, t_fmt *fmt,
 {
 	unsigned short		n;
 
-
 	if (fmt->arg_n != 0)
 		n = (unsigned short)va_getarg_uint(args->ap, fmt->arg_n);
 	else
@@ -46,7 +44,6 @@ char			*oux_uint_tostring(t_args *args, t_fmt *fmt, unsigned int base,
 					char *digits)
 {
 	unsigned int		n;
-
 
 	if (fmt->arg_n != 0)
 		n = va_getarg_uint(args->ap, fmt->arg_n);
@@ -62,7 +59,6 @@ char			*oux_ulong_tostring(t_args *args, t_fmt *fmt, unsigned int base,
 {
 	unsigned long		n;
 
-
 	if (fmt->arg_n != 0)
 		n = (unsigned long)va_getarg_ulong(args->ap, fmt->arg_n);
 	else
@@ -76,7 +72,6 @@ char			*oux_ulonglong_tostring(t_args *args, t_fmt *fmt,
 					unsigned int base, char *digits)
 {
 	unsigned long long	n;
-
 
 	if (fmt->arg_n != 0)
 		n = (unsigned long long)va_getarg_ulonglong(args->ap, fmt->arg_n);

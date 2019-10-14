@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 12:14:11 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/07 18:45:19 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/14 12:39:09 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct		s_fields
 	t_precision		use_precision;
 	char			*value;
 	char			free;
+	char			is_char;
 }					t_fields;
 
 typedef struct		s_fsize
@@ -188,7 +189,7 @@ void				ft_printf__(t_buffer *buff, const char *format,
 char				*get_str_from_oux_lenght(t_fmt *fmt, t_args *args,
 						unsigned int base);
 char				*get_str_from_di_lenght(t_fmt *fmt, t_args *args);
-void				get_str_from_f_lenght(t_fmt *fmt, t_args *args, 
+void				get_str_from_f_lenght(t_fmt *fmt, t_args *args,
 						t_fields *fields);
 
 int					double_exception(double d, t_fields *fields);
