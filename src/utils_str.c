@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_float.c                                      :+:      :+:    :+:   */
+/*   utils_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/06 16:52:58 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/15 15:50:54 by awafflar         ###   ########.fr       */
+/*   Created: 2019/10/15 10:59:03 by awafflar          #+#    #+#             */
+/*   Updated: 2019/10/15 15:03:56 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
+
 #include "ft_printf_core.h"
 
-static void		nan_inf_case(t_fmt *fmt)
+size_t		ft_strlen(const char *s)
 {
-	fmt->flags &= ~F_ZERO;
-	fmt->flags &= ~F_PRECI;
-	fmt->precision = 0;
+	const char	*s1;
+
+	s1 = s;
+	while (*s1)
+		s1++;
+	return ((size_t)(s1 - s));
 }
 
-void			print_float(t_buffer *buff, t_fmt *fmt, t_args *args)
+int			ft_strcmp(const char *s1, const char *s2)
 {
-	t_fields	fields;
-
-	fields_init(&fields);
-	get_str_from_f_lenght(fmt, args, &fields);
-	if (ft_strcmp(fields.value, "nan") == 0
-			|| ft_strcmp(fields.value, "inf") == 0
-			|| ft_strcmp(fields.value, "-inf") == 0)
-		nan_inf_case(fmt);
-	print__(buff, fmt, &fields);
+	while (*s1 && *s2)
+	{
+		if (*s1 != *s2)
+			return (*s1 - *s2);
+		s1++;
+		s2++;
+	}
+	return (0);
 }

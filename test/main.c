@@ -857,6 +857,7 @@ int     float_test(int test_count)
         99.0,
         100.0,
         90.0,
+		-0.0,
         -1.0,
         -5.0,
         -9.99,
@@ -866,11 +867,15 @@ int     float_test(int test_count)
         -100.0,
 		-987654.0,
 		-87654.0,
+		0.0 / 0.0,
+		-0.0 / 0.0,
+		1.0 / 0.0,
+		-1.0 / 0.0
         };
 
     for (int i = 0; format[i] ; i++)
     {
-        for (int j = 0; j < 23; j++)
+        for (int j = 0; j < 25; j++)
         {
             test_count++;
 			printf_ret = snprintf(printf_str, 50, format[i], value[j]);
@@ -928,9 +933,11 @@ int main()
 		return (-1);
 	printf("Floats tests OK\n");
 	printf("%d TESTS SUCCESSFUL\n", test_count);
-	
+
+	long double a = 1.42;
+	double b = 1.42;
 	printf("================\tHANDTESTS\t================\n");
-	printf("%f %lf %Lf\n", 1.42, 1.42, 1.42l);
-	ft_printf("%f %lf %Lf\n", 1.42, 1.42, 1.42l);
+	printf("%f %lf %Lf\n", b, b, a);
+	ft_printf("%f %lf %Lf\n", b, b, a);
 	return (0);
 }

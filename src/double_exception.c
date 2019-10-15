@@ -6,25 +6,29 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 14:57:38 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/14 11:25:36 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/15 15:48:07 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <float.h>
 
 #include "ft_printf_core.h"
 
 int			double_exception(double d, t_fields *fields)
 {
-	if (d == 0.0 / 0.0)
+	if (d != d)
 	{
+		fields->prefix = "";
 		fields->value = "nan";
 		return (1);
 	}
-	else if (d == 1.0 / 0.0)
+	else if (d == -1.0 / 0.0)
 	{
-		fields->value = "inf";
+		fields->prefix = "";
+		fields->value = "-inf";
 		return (1);
 	}
-	else if (d == -1.0 / 0.0)
+	else if (d >= DBL_MAX)
 	{
 		fields->value = "inf";
 		return (1);
@@ -34,17 +38,19 @@ int			double_exception(double d, t_fields *fields)
 
 int			ldouble_exception(long double d, t_fields *fields)
 {
-	if (d == 0.0L / 0.0L)
+	if (d != d)
 	{
+		fields->prefix = "";
 		fields->value = "nan";
 		return (1);
 	}
-	else if (d == 1.0L / 0.0L)
+	else if (d <= -LDBL_MAX)
 	{
-		fields->value = "inf";
+		fields->prefix = "";
+		fields->value = "-inf";
 		return (1);
 	}
-	else if (d == -1.0L / 0.0L)
+	else if (d >= LDBL_MAX)
 	{
 		fields->value = "inf";
 		return (1);

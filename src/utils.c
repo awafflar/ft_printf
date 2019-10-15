@@ -6,21 +6,9 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 14:20:27 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/14 11:41:37 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/15 11:00:28 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stddef.h>
-
-size_t		ft_strlen(const char *s)
-{
-	const char	*s1;
-
-	s1 = s;
-	while (*s1)
-		s1++;
-	return ((size_t)(s1 - s));
-}
 
 int			ft_isdigit(char c)
 {

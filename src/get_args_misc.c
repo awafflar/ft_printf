@@ -6,13 +6,11 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 14:31:00 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/14 13:19:51 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/15 15:00:58 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_core.h"
-
-#include <stdio.h>
 
 char				*va_getarg_str(va_list ap, int argn)
 {
@@ -61,6 +59,5 @@ long double			va_getarg_long_double(va_list ap, int argn)
 	while (argn--)
 		ret = va_arg(ap_tmp, long double);
 	va_end(ap_tmp);
-	printf("DEBUG : %Lf\n", ret);
 	return (ret);
 }

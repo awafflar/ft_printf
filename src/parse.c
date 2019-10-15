@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 14:31:38 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/06 13:47:22 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/15 15:39:32 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,21 @@ static int	p_width(t_fmt *fmt, const char **format, t_args *args)
 	int		tmp;
 
 	star = 0;
+	tmp = 0;
 	if (**format == '*')
-	{
-		(*format)++;
 		star = 1;
-	}
 	if (ft_isdigit(**format))
 		tmp = ft_atoi_lite(format);
 	if (**format == '$')
 	{
 		(*format)++;
 		if (star && tmp != 0)
-			fmt->width = (size_t)va_getarg_int(args->ap, tmp);
+			parse_dol_w_star(fmt, args, tmp);
 		else if (tmp != 0)
 			fmt->arg_n = tmp;
 	}
-	else if (star && tmp == 0)
-		fmt->width = (size_t)va_getarg_int(args->ap, args->current++);
+	else if (star)
+		parse_star(fmt, format, args, WIDTH);
 	else if (!star && tmp)
 		fmt->width = (size_t)tmp;
 	return (1);
@@ -60,14 +58,10 @@ static int	p_preci(t_fmt *fmt, const char **format, t_args *args)
 	{
 		(*format)++;
 		if (star && fmt->precision != 0)
-			fmt->precision = (size_t)va_getarg_int(args->ap,
-				(int)fmt->precision);
+			parse_dol_p_star(fmt, args, (int)fmt->precision);
 	}
 	else if (star)
-	{
-		if (fmt->precision == 0)
-			fmt->precision = (size_t)va_getarg_int(args->ap, args->current++);
-	}
+		parse_star(fmt, format, args, PRECISION);
 	return (1);
 }
 

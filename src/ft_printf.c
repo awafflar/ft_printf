@@ -6,13 +6,11 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 09:38:59 by awafflar          #+#    #+#             */
-/*   Updated: 2019/09/18 15:58:35 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/15 15:49:10 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include <stdarg.h>
-#include <stdlib.h>
 
 #include "ft_printf.h"
 #include "ft_printf_core.h"

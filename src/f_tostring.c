@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 18:28:41 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/07 20:01:03 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/15 14:31:40 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void			f_double_tostring(t_args *args, t_fmt *fmt, t_fields *fields)
 		d = va_getarg_double(args->ap, fmt->arg_n);
 	else
 		d = va_getarg_double(args->ap, args->current++);
-	if (d < 0)
+	if (1 / d < 0)
 	{
 		d = -d;
 		fields->prefix = "-";
@@ -43,7 +43,7 @@ void			f_ldouble_tostring(t_args *args, t_fmt *fmt, t_fields *fields)
 		d = va_getarg_long_double(args->ap, fmt->arg_n);
 	else
 		d = va_getarg_long_double(args->ap, args->current++);
-	if (d < 0)
+	if (1 / d < 0)
 	{
 		d = -d;
 		fields->prefix = "-";

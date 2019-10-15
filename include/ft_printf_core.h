@@ -6,7 +6,7 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 12:14:11 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/14 12:39:09 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/15 15:44:53 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@
 # define F_UPPER	64
 # define F_SIGN_P	128
 # define F_SIGN_M	256
+
+typedef enum		e_ptype
+{
+	WIDTH,
+	PRECISION
+}					t_ptype;
 
 typedef enum		e_precision
 {
@@ -94,6 +100,10 @@ typedef struct		s_fsize
 }					t_fsize;
 
 void				parse_core(t_fmt *fmt, const char **format, t_args *args);
+void				parse_star(t_fmt *fmt, const char **format, t_args *args,
+						t_ptype t);
+void				parse_dol_w_star(t_fmt *fmt, t_args *args, int n);
+void				parse_dol_p_star(t_fmt *fmt, t_args *args, int n);
 
 void				fields_init(t_fields *f);
 
@@ -115,6 +125,8 @@ void				print_float(t_buffer *buff, t_fmt *fmt, t_args *args);
 void				print__(t_buffer *buff, t_fmt *fmt, t_fields *fields);
 
 size_t				ft_strlen(const char *s);
+int					ft_strcmp(const char *s1, const char *s2);
+
 int					ft_isdigit(char c);
 int					ft_atoi_lite(const char **str);
 char				*ft_lltostr(long long n);

@@ -6,11 +6,10 @@
 /*   By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 14:32:05 by awafflar          #+#    #+#             */
-/*   Updated: 2019/10/14 11:42:50 by awafflar         ###   ########.fr       */
+/*   Updated: 2019/10/15 15:51:51 by awafflar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
 #include "ft_printf_core.h"
 
 static void		(*g_fun[14])(t_buffer *, t_fmt *, t_args *) =

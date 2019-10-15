@@ -6,7 +6,7 @@
 #    By: awafflar <awafflar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/18 09:38:44 by awafflar          #+#    #+#              #
-#    Updated: 2019/10/07 19:52:59 by awafflar         ###   ########.fr        #
+#    Updated: 2019/10/15 15:40:02 by awafflar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC =	ft_printf.c 			\
 		ft_ldtoa.c				\
 		ft_vprintf.c			\
 		parse.c					\
+		parse_star.c			\
 		print.c					\
 		printf_core.c			\
 		print_binary.c			\
@@ -44,6 +45,7 @@ SRC =	ft_printf.c 			\
 		print_string.c			\
 		print_unsigned.c		\
 		utils.c					\
+		utils_str.c				\
 		get_args_misc.c			\
 		get_args_signed.c		\
 		get_args_unsigned.c		\
